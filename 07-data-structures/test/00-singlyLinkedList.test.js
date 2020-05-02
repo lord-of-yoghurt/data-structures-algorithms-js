@@ -33,4 +33,11 @@ describe('a linked list', () => {
     assert.equal('apples', testList.head.data);
     assert.equal('grapefruits', testList.tail.data);
   });
+
+  it('outputs the whole list in a nice format', () => {
+    assert.equal(
+      '(apples) -> (oranges) -> (grapefruits)',
+      testList.toString()
+    );
+  });
 });

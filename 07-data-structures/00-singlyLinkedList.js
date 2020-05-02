@@ -46,8 +46,9 @@ class SinglyLinkedList {
         current = current.next;
       }
     }
-
+    
     console.log(str);
+    return str;
   }
 }
 
