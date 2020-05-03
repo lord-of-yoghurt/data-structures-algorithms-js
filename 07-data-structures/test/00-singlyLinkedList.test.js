@@ -58,11 +58,17 @@ describe('a linked list', () => {
       assert.equal('grapefruits', testList.tail.data);
     });
 
-    it('adds an item to the beginning of the list (shift)', () => {
-      testList.shift('elephants');
+    it('adds an item to the beginning of the list (unshift)', () => {
+      testList.unshift('elephants');
 
       assert.equal(4, testList.length);
       assert.equal('elephants', testList.head.data);
+    });
+
+    it('removes an item from the beginning of the list (shift)', () => {
+      testList.shift();
+
+      assert.equal(3, testList.length);
     });
   });
 });

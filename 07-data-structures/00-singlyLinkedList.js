@@ -54,13 +54,7 @@ class SinglyLinkedList {
   pop() {
     if (this.length === 0) return console.log('The list is empty!');
 
-    if (this.length === 1) {
-      this.head = null;
-      this.tail = null;
-      this.length = 0;
-
-      return this;
-    }
+    if (this.length === 1) return this.clear();
     
     // in order to remove the last node, we need to get 
     // the next-to-last one
@@ -76,7 +70,7 @@ class SinglyLinkedList {
     return this;
   }
 
-  shift(data) {
+  unshift(data) {
     const newNode = new Node(data);
 
     if (!this.length) {
@@ -91,6 +85,29 @@ class SinglyLinkedList {
     this.head = newNode;
 
     this.length++;
+
+    return this;
+  }
+
+  // remove the first item of the list
+  shift() {
+    if (!this.length) return console.log('The list is empty!');
+
+    if (this.length === 1) return this.clear();
+
+    // reassign the head to its following node
+    this.head = this.head.next;
+    this.length--;
+
+    return this;
+  }
+
+  clear() {
+    if (!this.length) return console.log('The list is empty!');
+
+    this.head = null;
+    this.tail = null;
+    this.length = 0;
 
     return this;
   }
