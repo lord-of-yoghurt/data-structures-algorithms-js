@@ -12,6 +12,24 @@ class SinglyLinkedList {
     this.tail = null;
   }
 
+  toString() {
+    if (!this.length) return console.log('The list is empty!');
+
+    let current = this.head,
+      str = '';
+
+    for (let i = 0; i < this.length; i++) {
+      if (!current.next) str += `(${current.data})`;
+      else {
+        str += `(${current.data}) -> `;
+        current = current.next;
+      }
+    }
+
+    console.log(str);
+    return str;
+  }
+
   push(data) {
     const newNode = new Node(data);
 
@@ -33,22 +51,29 @@ class SinglyLinkedList {
     return this;
   }
 
-  toString() {
-    if (!this.length) console.log('The list is empty!');
+  pop() {
+    if (this.length === 0) return console.log('The list is empty!');
 
-    let current = this.head,
-        str = '';
+    if (this.length === 1) {
+      this.head = null;
+      this.tail = null;
+      this.length = 0;
 
-    for (let i = 0; i < this.length; i++) {
-      if (!current.next) str += `(${current.data})`;
-      else {
-        str += `(${current.data}) -> `;
-        current = current.next;
-      }
+      return this;
     }
     
-    console.log(str);
-    return str;
+    // in order to remove the last node, we need to get 
+    // the next-to-last one
+    let current = this.head;
+
+    while (current.next.next) {
+      current = current.next;
+    }
+
+    this.tail = current;
+    this.length--;
+
+    return this;
   }
 }
 

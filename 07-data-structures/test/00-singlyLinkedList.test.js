@@ -40,4 +40,22 @@ describe('a linked list', () => {
       testList.toString()
     );
   });
+
+  describe('...and its methods', () => {
+    it('adds an item to the end of the list (push)', () => {
+      assert.equal(3, testList.length);
+
+      testList.push('chickens');
+
+      assert.equal(4, testList.length);
+      assert.equal('chickens', testList.tail.data);
+    });
+
+    it('removes an item from the end of the list (pop)', () => {
+      testList.pop();
+
+      assert.equal(3, testList.length);
+      assert.equal('grapefruits', testList.tail.data);
+    });
+  });
 });
