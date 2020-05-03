@@ -75,6 +75,25 @@ class SinglyLinkedList {
 
     return this;
   }
+
+  shift(data) {
+    const newNode = new Node(data);
+
+    if (!this.length) {
+      this.head = newNode;
+      this.tail = newNode;
+    }
+
+    // insert the new node at the beginning:
+    // the head becomes next after new node
+    newNode.next = this.head;
+    // new node becomes the new head
+    this.head = newNode;
+
+    this.length++;
+
+    return this;
+  }
 }
 
 module.exports = { Node, SinglyLinkedList };
