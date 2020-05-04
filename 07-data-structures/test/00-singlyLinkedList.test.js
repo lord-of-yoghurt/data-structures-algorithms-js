@@ -41,8 +41,8 @@ describe('a linked list', () => {
     );
   });
 
-  describe('...and its methods', () => {
-    it('adds an item to the end of the list (push)', () => {
+  describe('push', () => {
+    it('adds an item to the end of the list', () => {
       assert.equal(3, testList.length);
 
       testList.push('chickens');
@@ -50,29 +50,37 @@ describe('a linked list', () => {
       assert.equal(4, testList.length);
       assert.equal('chickens', testList.tail.data);
     });
+  });
 
-    it('removes an item from the end of the list (pop)', () => {
+  describe('pop', () => {
+    it('removes an item from the end of the list', () => {
       testList.pop();
 
       assert.equal(3, testList.length);
       assert.equal('grapefruits', testList.tail.data);
     });
+  });
 
-    it('adds an item to the beginning of the list (unshift)', () => {
+  describe('unshift', () => {
+    it('adds an item to the beginning of the list', () => {
       testList.unshift('elephants');
 
       assert.equal(4, testList.length);
       assert.equal('elephants', testList.head.data);
     });
+  });
 
-    it('removes an item from the beginning of the list (shift)', () => {
+  describe('shift', () => {
+    it('removes an item from the beginning of the list', () => {
       testList.shift();
 
       assert.equal(3, testList.length);
     });
+  });
 
-    it('returns a node at a specified index (get)', () => {
-      let node = testList.get(1);
+  describe('get', () => {
+    it('returns a node at a specified index', () => {
+      const node = testList.get(1);
 
       assert.equal('oranges', node.data);
     });
@@ -80,11 +88,29 @@ describe('a linked list', () => {
     it('returns undefined if index is out of bounds', () => {
       assert.equal(undefined, testList.get(10));
     });
+  });
 
+  describe('set', () => {
     it('updates the value of a specified node (set)', () => {
       testList.set(2, 'bananas');
 
       assert.equal('bananas', testList.tail.data);
+    });
+  });
+
+  describe('insert', () => {
+    it('inserts a node at a specified position correctly', () => {
+      testList.insert(2, 'mangos');
+
+      assert.equal(4, testList.length);
+      assert.equal('bananas', testList.tail.data);
+      assert.equal('oranges', testList.get(1).data);
+    });
+
+    it('handles inserting at the tail correctly', () => {
+      testList.insert(4, 'pineapples');
+
+      assert.equal('pineapples', testList.tail.data);
     });
   });
 });

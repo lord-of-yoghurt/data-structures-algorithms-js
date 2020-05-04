@@ -134,11 +134,34 @@ class SinglyLinkedList {
   set(idx, data) {
     const node = this.get(idx);
 
-    if (!node) return undefined;
+    if (!node) return null;
 
     node.data = data;
 
-    return this;
+    return node;
+  }
+
+  /* 
+  len: 4
+      0         1           2         3
+    apples -> oranges -> mangos -> grapefruits
+  */
+  insert(idx, data) {
+    if (idx < 0 || idx > this.length) return null;
+
+    if (idx === 0) return this.unshift(data);
+    // if we're one past the tail, use push
+    if (idx === this.length) return this.push(data);
+
+    const node = this.get(idx - 1),
+          newNode = new Node(data);
+
+    newNode.next = node.next;
+    node.next = newNode;
+
+    this.length++;
+    
+    return newNode;
   }
 }
 
