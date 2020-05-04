@@ -52,7 +52,11 @@ class SinglyLinkedList {
   }
 
   pop() {
-    if (this.length === 0) return console.log('The list is empty!');
+    if (this.length === 0) {
+      console.log('The list is empty!');
+
+      return undefined;
+    }
 
     if (this.length === 1) return this.clear();
     
@@ -108,6 +112,31 @@ class SinglyLinkedList {
     this.head = null;
     this.tail = null;
     this.length = 0;
+
+    return this;
+  }
+
+  get(idx) {
+    if (idx >= this.length) return undefined;
+
+    if (idx === 0) return this.head;
+
+    // starting from the beginning of the list...
+    let current = this.head;
+
+    for (let i = 0; i < idx; i++) {
+      current = current.next;
+    }
+
+    return current;
+  }
+
+  set(idx, data) {
+    const node = this.get(idx);
+
+    if (!node) return undefined;
+
+    node.data = data;
 
     return this;
   }

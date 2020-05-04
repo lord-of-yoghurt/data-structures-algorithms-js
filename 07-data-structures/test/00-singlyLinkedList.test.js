@@ -70,5 +70,21 @@ describe('a linked list', () => {
 
       assert.equal(3, testList.length);
     });
+
+    it('returns a node at a specified index (get)', () => {
+      let node = testList.get(1);
+
+      assert.equal('oranges', node.data);
+    });
+
+    it('returns undefined if index is out of bounds', () => {
+      assert.equal(undefined, testList.get(10));
+    });
+
+    it('updates the value of a specified node (set)', () => {
+      testList.set(2, 'bananas');
+
+      assert.equal('bananas', testList.tail.data);
+    });
   });
 });
