@@ -141,16 +141,13 @@ class SinglyLinkedList {
     return node;
   }
 
-  /* 
-  len: 4
-      0         1           2         3
-    apples -> oranges -> mangos -> grapefruits
-  */
   insert(idx, data) {
-    if (idx < 0 || idx > this.length) return null;
+    // check for out-of-bound indices
+    if (idx < 0 || idx > this.length) return undefined;
 
+    // if inserting at the head, use unshift
     if (idx === 0) return this.unshift(data);
-    // if we're one past the tail, use push
+    // if inserting at the tail, use push
     if (idx === this.length) return this.push(data);
 
     const node = this.get(idx - 1),
@@ -162,6 +159,26 @@ class SinglyLinkedList {
     this.length++;
     
     return newNode;
+  }
+
+  remove(idx) {
+    // check for out-of-bound indices
+    if (idx < 0 || idx > this.length) return undefined;
+
+    // if removing at the head, use shift
+    if (idx === 0) return this.shift();
+    // if removing at the tail, use pop
+    if (idx === this.length - 1) return this.pop();
+
+    // get the node BEFORE the one being removed
+    const node = this.get(idx - 1);
+
+    // point its next to the one AFTER the one being removed
+    node.next = node.next.next;
+
+    this.length--;
+
+    return this;
   }
 }
 

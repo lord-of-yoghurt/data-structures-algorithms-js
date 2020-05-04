@@ -91,7 +91,7 @@ describe('a linked list', () => {
   });
 
   describe('set', () => {
-    it('updates the value of a specified node (set)', () => {
+    it('updates the value of a specified node', () => {
       testList.set(2, 'bananas');
 
       assert.equal('bananas', testList.tail.data);
@@ -107,10 +107,45 @@ describe('a linked list', () => {
       assert.equal('oranges', testList.get(1).data);
     });
 
+    it('handles inserting at the head correctly', () => {
+      testList.insert(0, 'apricots');
+
+      assert.equal('apricots', testList.head.data);
+    });
+
     it('handles inserting at the tail correctly', () => {
-      testList.insert(4, 'pineapples');
+      testList.insert(5, 'pineapples');
 
       assert.equal('pineapples', testList.tail.data);
+    });
+
+    it('handles out-of-bound indices', () => {
+      assert.equal(undefined, testList.insert(10, 'kittens'));
+    });
+  });
+  
+  describe('remove', () => {
+    it('removes a node from a specified position', () => {
+      testList.remove(3);
+
+      assert.equal(5, testList.length);
+      assert.equal('bananas', testList.get(3).data);
+    });
+
+    it('handles out-of-bound indices', () => {
+      assert.equal(undefined, testList.remove(10));
+    });
+
+    it('removes from tail correctly', () => {
+      testList.remove(4);
+
+      assert.equal('bananas', testList.tail.data);
+    });
+
+    it('removes from head correctly', () => {
+      testList.remove(0);
+
+      assert.equal('apples', testList.head.data);
     });
   });
 });
