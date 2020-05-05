@@ -163,7 +163,7 @@ class SinglyLinkedList {
 
   remove(idx) {
     // check for out-of-bound indices
-    if (idx < 0 || idx > this.length) return undefined;
+    if (idx < 0 || idx >= this.length) return undefined;
 
     // if removing at the head, use shift
     if (idx === 0) return this.shift();
@@ -180,6 +180,64 @@ class SinglyLinkedList {
 
     return this;
   }
+
+  // reverse in place! no copying the list
+  reverse() {
+    // sanity
+    if (this.length < 2) return this;
+
+    // we need three pointers: previous, current, next
+    let prev, cur, next;
+
+    //--- 1. THE PREP
+    // reassign the tail to the head
+    this.tail = this.head;
+
+    // previous is the head (this part is already done)
+    prev = this.head;
+    // current is the one after
+    cur = prev.next;
+    // next is the one after that
+    next = cur.next;
+
+    //--- 2. THE LOOP
+    // while next comes back truthy,
+    while (next) {
+      // current now points BACK to previous
+      cur.next = prev;
+      // shift previous forward
+      prev = cur;
+      // shift current forward
+      cur = next;
+      // shift next forward
+      next = cur.next;
+    }
+
+    //--- 3. THE AFTERMATH
+    // once there's no more next, current is on the LAST node.
+    // point current to previous for the last time
+    cur.next = prev;
+    // reassign the head
+    this.head = cur;
+    // make sure the tail doesn't point to anything
+    this.tail.next = null;
+
+    // return thyself
+    return this;
+  }
 }
 
 module.exports = { Node, SinglyLinkedList };
+
+/* 
+
+                        next
+                  cur
+            prev 
+h                      
+13 -> 27    32    71
+
+13 <- 27 <- 32 <- 71
+t                 h
+
+*/

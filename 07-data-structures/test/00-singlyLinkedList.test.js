@@ -148,4 +148,22 @@ describe('a linked list', () => {
       assert.equal('apples', testList.head.data);
     });
   });
+
+  describe('reverse', () => {
+    it('reverses the order of the linked list', () => {
+      testList.push('peaches');
+      testList.reverse();
+
+      assert.equal('peaches', testList.head.data);
+      assert.equal('apples', testList.tail.data);
+      assert.equal('bananas', testList.get(1).data);
+    });
+
+    it('handles a list with two nodes', () => {
+      testList.shift().shift().reverse();
+
+      assert.equal('apples', testList.head.data);
+      assert.equal('oranges', testList.tail.data);
+    });
+  });
 });
