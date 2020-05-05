@@ -228,16 +228,3 @@ class SinglyLinkedList {
 }
 
 module.exports = { Node, SinglyLinkedList };
-
-/* 
-
-                        next
-                  cur
-            prev 
-h                      
-13 -> 27    32    71
-
-13 <- 27 <- 32 <- 71
-t                 h
-
-*/
