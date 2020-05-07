@@ -23,7 +23,7 @@ describe('a stack', () => {
   describe('push', () => {
     it('points first and last to the same node if stack empty', () => {
       testStack.push('apples');
-      console.log(testStack);
+  
       assert.equal(testStack.first.data, testStack.last.data);
     });
 
