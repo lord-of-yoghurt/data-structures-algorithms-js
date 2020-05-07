@@ -15,4 +15,46 @@ describe('a single node', () => {
   });
 });
 
-// TODO: stack tests for push() and pop()
+describe('a stack', () => {
+  it('initializes with size 0', () => {
+    assert.equal(0, testStack.size);
+  });
+
+  describe('push', () => {
+    it('adds an item on top of the stack', () => {
+      testStack.push('apples').push('oranges').push('peaches');
+
+      assert.equal('peaches', testStack.last.data);
+    });
+
+    it('keeps track of the first item correctly', () => {
+      assert.equal('apples', testStack.first.data);
+    });
+
+    it('updates the size of the stack correctly', () => {
+      assert.equal(3, testStack.size);
+    });
+  });
+
+  describe('pop', () => {
+    it('removes an item from the top of the stack', () => {
+      testStack.pop();
+
+      assert.equal('oranges', testStack.last.data);
+    });
+
+    it('keeps track of the first item correctly', () => {
+      assert.equal('apples', testStack.first.data);
+    });
+
+    it('updates the size of the stack correctly', () => {
+      assert.equal(2, testStack.size);
+    });
+
+    it('points first and last to the same node if one node left', () => {
+      testStack.pop();
+
+      assert.equal(testStack.first.data, testStack.last.data);
+    });
+  });
+});

@@ -23,15 +23,13 @@ class Stack {
   }
 
   // O(1)
-
-  // TODO: test this
   pop() {
     if (this.isEmpty()) return null;
 
     const node = this.last;
     this.last = node.next;
 
-    this.length--;
+    this.size--;
 
     return node;
   }
