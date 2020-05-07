@@ -21,8 +21,14 @@ describe('a stack', () => {
   });
 
   describe('push', () => {
+    it('points first and last to the same node if stack empty', () => {
+      testStack.push('apples');
+      console.log(testStack);
+      assert.equal(testStack.first.data, testStack.last.data);
+    });
+
     it('adds an item on top of the stack', () => {
-      testStack.push('apples').push('oranges').push('peaches');
+      testStack.push('oranges').push('peaches');
 
       assert.equal('peaches', testStack.last.data);
     });
