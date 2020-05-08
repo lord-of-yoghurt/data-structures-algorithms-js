@@ -17,24 +17,17 @@ class Queue {
     // if the queue is empty, new node becomes first
     if (this.isEmpty()) {
       this.first = newNode;
-    }
-
-    // we have to keep track of the node that will
-    // become first after the first one pops,
-    // so if there's one node present, point its next
-    // to the new node
-    else if (this.size === 1) {
-      this.first.next = newNode;
-    }
-
-    // otherwise, it doesn't matter how many nodes there are
-    // after the first two. point the last node's next
-    // to the new node
-    else {
+    // otherwise, point the last node's next to the new node
+    } else {
       this.last.next = newNode;
     }
 
-    // the new node is always last
+    // in both cases, the new node is last:
+    // if empty, the new node is both first and last
+    // (which means that when we add more than one,
+    // the `next` of the first node will be reassigned correctly);
+    // otherwise, last will be reassigned to the new node
+    // after previous last's next is pointed to it
     this.last = newNode;
 
     this.size++;
