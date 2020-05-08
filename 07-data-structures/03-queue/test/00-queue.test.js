@@ -9,9 +9,9 @@ describe('a queue', () => {
     assert.equal(0, testQueue.size);
   });
 
-  describe('push', () => {
+  describe('enqueue', () => {
     it('adds new nodes at the end of the queue', () => {
-      testQueue.push('apples').push('oranges');
+      testQueue.enqueue('apples').enqueue('oranges');
 
       assert.equal('oranges', testQueue.last.data);
     });
@@ -21,7 +21,7 @@ describe('a queue', () => {
     });
 
     it('keeps track of the first node correctly', () => {
-      testQueue.push('peaches');
+      testQueue.enqueue('peaches');
 
       assert.equal('apples', testQueue.first.data);
     });
@@ -31,9 +31,9 @@ describe('a queue', () => {
     });
   });
 
-  describe('pop', () => {
+  describe('dequeue', () => {
     it('removes the first node correctly', () => {
-      testQueue.pop();
+      testQueue.dequeue();
 
       assert.equal('oranges', testQueue.first.data);
     });

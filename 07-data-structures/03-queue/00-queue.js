@@ -11,7 +11,7 @@ class Queue {
 
   // add to the end of the queue
   // O(1)
-  push(data) {
+  enqueue(data) {
     const newNode = new Node(data);
 
     // if the queue is empty, new node becomes first
@@ -44,7 +44,7 @@ class Queue {
 
   // remove from the beginning of the queue
   // O(1)
-  pop() {
+  dequeue() {
     // if the queue is empty, do nothing
     if (this.isEmpty()) return null;
 
