@@ -60,7 +60,7 @@ describe('a stack', () => {
     it('points first and last to the same node if one node left', () => {
       testStack.pop();
 
-      assert.equal(testStack.first.data, testStack.last.data);
+      assert.deepStrictEqual(testStack.first, testStack.last);
     });
   });
 });
