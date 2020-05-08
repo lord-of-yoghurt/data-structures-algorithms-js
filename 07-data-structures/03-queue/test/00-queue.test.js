@@ -45,5 +45,11 @@ describe('a queue', () => {
     it('updates the size of the queue correctly', () => {
       assert.equal(2, testQueue.size);
     });
+
+    it('points first/last to the same node if only one node left', () => {
+      testQueue.dequeue();
+
+      assert.deepStrictEqual(testQueue.first, testQueue.last);
+    });
   });
 });
