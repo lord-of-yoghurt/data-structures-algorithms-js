@@ -7,8 +7,6 @@ class Queue {
     this.size = 0;
   }
 
-  // TODO: write tests for everything!
-
   // add to the end of the queue
   // O(1)
   enqueue(data) {
