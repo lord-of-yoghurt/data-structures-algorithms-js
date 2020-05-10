@@ -26,12 +26,13 @@ class BinarySearchTree {
           // otherwise, shift over to the node on the left
         } else current = current.left;
       // going down the right side of the tree, same logic
-      } else {
+      } else if (val > current.val) {
         if (!current.right) {
           current.right = newNode;
           return this;
         } else current = current.right;
-      }
+      // otherwise, the value already exists, so ignore it
+      } else return null;
     }
   }
 }
@@ -49,6 +50,7 @@ myTree.insert(50);
 myTree.insert(25);
 myTree.insert(75);
 myTree.insert(67);
+myTree.insert(25);
 
 
 console.log(myTree);
