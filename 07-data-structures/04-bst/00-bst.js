@@ -91,3 +91,5 @@ myTree.insertRec(25);
 
 
 console.log(myTree);
+
+module.exports = { Node, BinarySearchTree };
