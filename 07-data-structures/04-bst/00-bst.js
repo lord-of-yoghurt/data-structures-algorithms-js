@@ -3,6 +3,7 @@ class BinarySearchTree {
     this.root = null;
   }
 
+  // insert iteratively
   insert(val) {
     const newNode = new Node(val);
 
@@ -35,6 +36,36 @@ class BinarySearchTree {
       } else return null;
     }
   }
+
+  // insert recursively
+  insertRec(val, current = this.root) {
+    const newNode = new Node(val);
+
+    if (!this.root) {
+      this.root = newNode;
+      return this;
+    }
+
+    if (val < current.val) {
+      if (!current.left) {
+        current.left = newNode;
+        return this;
+      } else {
+        this.insert(val, current.left);
+      }
+    }
+
+    else if (val > current.val) {
+      if (!current.right) {
+        current.right = newNode;
+        return this;
+      } else {
+        this.insert(val, current.right);
+      }
+    }
+
+    else return null;
+  }
 }
 
 class Node {
@@ -46,11 +77,11 @@ class Node {
 }
 
 const myTree = new BinarySearchTree();
-myTree.insert(50);
-myTree.insert(25);
-myTree.insert(75);
-myTree.insert(67);
-myTree.insert(25);
+myTree.insertRec(50);
+myTree.insertRec(25);
+myTree.insertRec(75);
+myTree.insertRec(67);
+myTree.insertRec(25);
 
 
 console.log(myTree);
