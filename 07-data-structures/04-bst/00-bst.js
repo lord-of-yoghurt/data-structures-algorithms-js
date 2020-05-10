@@ -41,30 +41,36 @@ class BinarySearchTree {
   insertRec(val, current = this.root) {
     const newNode = new Node(val);
 
+    // if no root, assign new node to it
     if (!this.root) {
       this.root = newNode;
       return this;
     }
 
+    // if value already exists, ignore it
+    if (val === current.val) return null;
+
+    // left side (val is less than current)
     if (val < current.val) {
+      // if its left doesn't exist, assign new node there
       if (!current.left) {
         current.left = newNode;
-        return this;
+      // otherwise, call this function current's left
       } else {
-        this.insert(val, current.left);
+        this.insertRec(val, current.left);
       }
     }
 
-    else if (val > current.val) {
+    // right side, same logic
+    if (val > current.val) {
       if (!current.right) {
         current.right = newNode;
-        return this;
       } else {
-        this.insert(val, current.right);
+        this.insertRec(val, current.right);
       }
     }
 
-    else return null;
+    return this;
   }
 }
 
