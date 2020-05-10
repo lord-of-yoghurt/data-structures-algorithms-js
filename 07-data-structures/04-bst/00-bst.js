@@ -13,12 +13,19 @@ class BinarySearchTree {
 
     let current = this.root;
 
+    // this will run until we return
     while (2 + 2 === 4) {
+      // if the value is less than the value of the current
+      // (going down the left side of the tree)
       if (val < current.val) {
+        // ...and if there's no node to the left
         if (!current.left) {
+          // insert there and return
           current.left = newNode;
           return this;
+          // otherwise, shift over to the node on the left
         } else current = current.left;
+      // going down the right side of the tree, same logic
       } else {
         if (!current.right) {
           current.right = newNode;
