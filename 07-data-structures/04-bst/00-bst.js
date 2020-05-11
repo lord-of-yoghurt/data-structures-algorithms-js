@@ -76,7 +76,7 @@ class BinarySearchTree {
   // is a node present in the BST? returns true/false
   find(val) {
     // if no root, it's an empty tree, return right away
-    if (!this.root) return false;
+    if (!this.root) return null;
 
     // start from the root
     let current = this.root;
@@ -84,18 +84,18 @@ class BinarySearchTree {
     // iterate until we return something
     while (true) {
       // if it's a match, we've found the node
-      if (val === current.val) return true;
+      if (val === current.val) return current;
 
       // if the value is less than that of current,
       else if (val < current.val) {
         // look to its left - is there a node?
-        if (!current.left) return false;
+        if (!current.left) return null;
         else current = current.left;
       }
 
       // otherwise, if it's larger,
       else {
-        if (!current.right) return false;
+        if (!current.right) return null;
         else current = current.right;
       }
     }

@@ -56,15 +56,15 @@ describe('a BST', () => {
 
   describe('find', () => {
     it('returns true if node is present', () => {
-      assert.equal(true, testTree.find(10));
+      assert.equal(10, testTree.find(10).val);
     });
 
     it('returns false if it ain\'t', () => {
-      assert.equal(false, testTree.find(11));
+      assert.equal(null, testTree.find(11));
     });
 
     it('handles an empty tree', () => {
-      assert.equal(false, emptyTree.find(50));
+      assert.equal(null, emptyTree.find(50));
     });
   });
 });
