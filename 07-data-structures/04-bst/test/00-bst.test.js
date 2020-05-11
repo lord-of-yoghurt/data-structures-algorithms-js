@@ -9,8 +9,8 @@ describe('a BST', () => {
     assert.equal(null, myTree.root);
   });
 
-  describe('insert', () => {
-    it('places a node at the root of the tree if no root',() => {
+  describe('insert (iterative)', () => {
+    it('places a node at the root of the tree if no root', () => {
       myTree.insert(50);
 
       assert.equal(50, myTree.root.val);
@@ -26,6 +26,30 @@ describe('a BST', () => {
       myTree.insert(75);
 
       assert.equal(75, myTree.root.right.val);
+    });
+
+    it('ignores elements that are already in the tree', () => {
+      assert.equal(null, myTree.insert(50));
+    });
+  });
+
+  /*
+            50
+        25      75
+      10  40
+  */
+
+  describe('insert (recursive)', () => {
+    it('places nodes correctly on the left', () => {
+      myTree.insertRec(10);
+
+      assert.equal(10, myTree.root.left.left.val);
+    });
+
+    it('places nodes correctly on the right', () => {
+      myTree.insertRec(40);
+
+      assert.equal(40, myTree.root.left.right.val);
     });
   });
 });
