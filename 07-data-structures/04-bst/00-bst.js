@@ -82,14 +82,4 @@ class Node {
   }
 }
 
-const myTree = new BinarySearchTree();
-myTree.insertRec(50);
-myTree.insertRec(25);
-myTree.insertRec(75);
-myTree.insertRec(67);
-myTree.insertRec(25);
-
-
-console.log(myTree);
-
-module.exports = { Node, BinarySearchTree };
+module.exports = { BinarySearchTree };
