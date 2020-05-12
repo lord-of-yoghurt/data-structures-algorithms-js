@@ -73,7 +73,8 @@ class BinarySearchTree {
     return this;
   }
 
-  // is a node present in the BST? returns true/false
+  // find a node in the BST by value 
+  // (returns node or null if not found)
   find(val) {
     // if no root, it's an empty tree, return right away
     if (!this.root) return null;
@@ -98,6 +99,23 @@ class BinarySearchTree {
         if (!current.right) return null;
         else current = current.right;
       }
+    }
+  }
+
+  // find a node by value recursively
+  findRec(val, current = this.root) {
+    if (!this.root) return null;
+
+    if (val === current.val) return current;
+
+    if (val < current.val) {
+      if (!current.left) return null;
+      else this.findRec(val, current.left);
+    }
+
+    else {
+      if (!current.right) return null;
+      else this.findRec(val, current.right);
     }
   }
 }

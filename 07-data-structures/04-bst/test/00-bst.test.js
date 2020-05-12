@@ -55,16 +55,26 @@ describe('a BST', () => {
   });
 
   describe('find', () => {
-    it('returns true if node is present', () => {
+    it('returns a node if it\'s present in the tree', () => {
       assert.equal(10, testTree.find(10).val);
     });
 
-    it('returns false if it ain\'t', () => {
+    it('returns null if it ain\'t', () => {
       assert.equal(null, testTree.find(11));
     });
 
     it('handles an empty tree', () => {
       assert.equal(null, emptyTree.find(50));
+    });
+  });
+
+  describe('find (recursive)', () => {
+    it('returns a node if it\'s there', () => {
+      assert.equal(10, testTree.find(10).val);
+    });
+
+    it('returns null if it ain\'t', () => {
+      assert.equal(null, testTree.find(11));
     });
   });
 });
