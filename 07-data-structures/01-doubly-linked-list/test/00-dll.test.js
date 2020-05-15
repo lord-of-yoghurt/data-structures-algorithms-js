@@ -82,10 +82,21 @@ describe('a doubly linked list', () => {
   });
 
   describe('unshift', () => {
+    it('handles an empty list', () => {
+      emptyList.unshift('peppers');
+
+      assert.equal('peppers', emptyList.first.data);
+      assert.equal('peppers', emptyList.last.data);
+    });
+
     it('adds a node to the beginning of the list', () => {
       testList.unshift('bananas');
 
       assert.equal('bananas', testList.first.data);
+    });
+
+    it('increments the length of the list', () => {
+      assert.equal(3, testList.length);
     });
   });
 });
