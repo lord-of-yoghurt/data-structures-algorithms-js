@@ -3,7 +3,8 @@ const assert = require('assert').strict;
 const { Node, DoublyLinkedList } = require('../00-dll');
 
 const testNode = new Node('apples'),
-      testList = new DoublyLinkedList();
+      testList = new DoublyLinkedList(),
+      emptyList = new DoublyLinkedList();
 
 describe('a node', () => {
   it('stores a value', () => {
@@ -61,6 +62,22 @@ describe('a doubly linked list', () => {
       testList.pop();
 
       assert.equal('oranges', testList.last.data);
+    });
+
+    it('decrements the list length', () => {
+      assert.equal(2, testList.length);
+    });
+
+    it('handles an empty list correctly', () => {
+      assert.equal(undefined, emptyList.pop());
+    });
+
+    it('handles a list with one element', () => {
+      emptyList.push('remove this!');
+      emptyList.pop();
+
+      assert.equal(null, emptyList.first);
+      assert.equal(null, emptyList.last);
     });
   });
 });
