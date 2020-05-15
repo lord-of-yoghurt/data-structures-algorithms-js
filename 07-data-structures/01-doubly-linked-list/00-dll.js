@@ -59,10 +59,27 @@ class DoublyLinkedList {
       this.last = node.prev;
     }
 
-    // decrement the length
     this.length--;
 
     return node;
+  }
+
+  unshift(data) {
+    // DRY: if the list is empty, use push
+    if (this.isEmpty()) return this.push(data);
+
+    const newNode = new Node(data);
+
+    // point first's previous to new node
+    this.first.prev = newNode;
+    // point new node's next to first
+    newNode.next = this.first;
+    // new node becomes first
+    this.first = newNode;
+
+    this.length++;
+
+    return this;
   }
 }
 

@@ -80,4 +80,12 @@ describe('a doubly linked list', () => {
       assert.equal(null, emptyList.last);
     });
   });
+
+  describe('unshift', () => {
+    it('adds a node to the beginning of the list', () => {
+      testList.unshift('bananas');
+
+      assert.equal('bananas', testList.first.data);
+    });
+  });
 });
