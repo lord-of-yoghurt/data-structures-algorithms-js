@@ -14,6 +14,7 @@ class DoublyLinkedList {
     return this.length === 0;
   }
 
+  // add to the end of the list
   push(data) {
     const newNode = new Node(data);
 
@@ -37,6 +38,31 @@ class DoublyLinkedList {
     this.length++;
 
     return this;
+  }
+
+  // remove from the end of the list
+  pop() {
+    if (this.isEmpty()) return undefined;
+
+    // grab the last node
+    const node = this.last;
+
+    if (this.length === 1) {
+      this.first = null;
+      this.last = null;
+    }
+
+    else {
+      // point its previous to nothingness
+      node.prev.next = null;
+      // make its previous the new last
+      this.last = node.prev;
+    }
+
+    // decrement the length
+    this.length--;
+
+    return node;
   }
 }
 
