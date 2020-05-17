@@ -87,10 +87,11 @@ class DoublyLinkedList {
   shift() {
     if (this.isEmpty()) return undefined;
 
+    // DRY: if only one element in the list, use pop()
+    if (this.length === 1) return this.pop();
+
     // grab the node to return
     const node = this.first;
-
-    if (this.length === 1) return this.pop();
 
     // point first's previous to null
     this.first.previous = null;
@@ -100,6 +101,27 @@ class DoublyLinkedList {
     this.length--;
 
     return node;
+  }
+
+  // find a node by index
+  get(idx) {
+    // determine the last item's index for later
+    const lastIdx = this.length - 1;
+
+    // out-of-bound indices not allowed
+    if (idx < 0 || idx > lastIdx) return undefined;
+
+    // possible O(1) outcomes
+    if (idx === 0) return this.first;
+    if (idx === lastIdx) return this.last;
+
+    let current = this.first;
+
+    for (let i = 0; i < idx; i++) {
+      current = current.next;
+    }
+
+    return current;
   }
 }
 

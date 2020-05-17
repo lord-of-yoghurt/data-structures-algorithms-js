@@ -122,4 +122,12 @@ describe('a doubly linked list', () => {
       assert.equal(undefined, emptyList.shift());
     });
   });
+
+  describe('get', () => {
+    it('takes an index and returns a node at that index', () => {
+      testList.push('mangos').push('peaches').push('strawberries');
+
+      assert.equal('peaches', testList.get(3).data);
+    });
+  });
 });
