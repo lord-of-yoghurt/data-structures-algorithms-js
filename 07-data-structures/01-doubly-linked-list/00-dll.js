@@ -81,6 +81,29 @@ class DoublyLinkedList {
 
     return this;
   }
+
+  shift() {
+    if (this.isEmpty()) return undefined;
+
+    // grab the node to return
+    const node = this.first;
+
+    if (this.length === 1) {
+      this.first = null;
+      this.last = null;
+    }
+
+    else {
+      // point first's previous to null
+      this.first.previous = null;
+      // previous first's next becomes the new first
+      this.first = node.next;
+    }
+
+    this.length--;
+
+    return node;
+  }
 }
 
 class Node {
