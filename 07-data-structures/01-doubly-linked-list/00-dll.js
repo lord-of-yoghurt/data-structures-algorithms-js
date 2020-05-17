@@ -92,12 +92,10 @@ class DoublyLinkedList {
 
     if (this.length === 1) return this.pop();
 
-    else {
-      // point first's previous to null
-      this.first.previous = null;
-      // previous first's next becomes the new first
-      this.first = node.next;
-    }
+    // point first's previous to null
+    this.first.previous = null;
+    // previous first's next becomes the new first
+    this.first = node.next;
 
     this.length--;
 
