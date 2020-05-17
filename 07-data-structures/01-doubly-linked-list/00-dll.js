@@ -14,6 +14,25 @@ class DoublyLinkedList {
     return this.length === 0;
   }
 
+  toString() {
+    let current = this.first;
+
+    let str = '';
+
+    for (let i = 0; i < this.length; i++) {
+      if (i === this.length - 1) {
+        str += `(${current.data})`;
+      } else {
+        str += `(${current.data}) ⇌  `;
+        current = current.next;
+      }
+    }
+
+    console.log(str);
+
+    return this;
+  }
+
   // add to the end of the list
   push(data) {
     const newNode = new Node(data);

@@ -126,6 +126,7 @@ describe('a doubly linked list', () => {
   describe('get', () => {
     it('takes an index and returns a node at that index', () => {
       testList.push('mangos').push('peaches').push('strawberries');
+      testList.toString();
 
       assert.equal('peaches', testList.get(3).data);
     });
