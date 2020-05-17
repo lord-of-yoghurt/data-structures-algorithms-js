@@ -126,13 +126,20 @@ describe('a doubly linked list', () => {
   describe('get', () => {
     it('takes an index and returns a node at that index', () => {
       testList.push('mangos').push('peaches').push('strawberries');
-      testList.toString();
 
       assert.equal('peaches', testList.get(3).data);
     });
 
     it('handles out-of-bound indices', () => {
       assert.equal(undefined, testList.get(5));
+    });
+  });
+
+  describe('set', () => {
+    it('updates the value of a node at a certain index', () => {
+      testList.set(2, 'watermelons');
+
+      assert.equal('watermelons', testList.get(2).data);
     });
   });
 });

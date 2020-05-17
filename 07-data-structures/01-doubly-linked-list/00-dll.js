@@ -143,6 +143,18 @@ class DoublyLinkedList {
 
     return current;
   }
+
+  // update the value of a node
+  set(idx, data) {
+    const node = this.get(idx);
+
+    if (node) {
+      node.data = data;
+      return node;
+    }
+
+    return undefined;
+  }
 }
 
 class Node {
