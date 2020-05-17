@@ -146,6 +146,8 @@ class DoublyLinkedList {
 
   // update the value of a node
   set(idx, data) {
+    if (arguments.length !== 2) return undefined;
+
     const node = this.get(idx);
 
     if (node) {

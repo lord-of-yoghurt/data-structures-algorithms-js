@@ -141,5 +141,9 @@ describe('a doubly linked list', () => {
 
       assert.equal('watermelons', testList.get(2).data);
     });
+
+    it('handles out-of-bound indices', () => {
+      assert.equal(undefined, testList.set(10, 'turnips'));
+    });
   });
 });
