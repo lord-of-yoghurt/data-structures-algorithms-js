@@ -129,5 +129,9 @@ describe('a doubly linked list', () => {
 
       assert.equal('peaches', testList.get(3).data);
     });
+
+    it('handles out-of-bound indices', () => {
+      assert.equal(undefined, testList.get(5));
+    });
   });
 });

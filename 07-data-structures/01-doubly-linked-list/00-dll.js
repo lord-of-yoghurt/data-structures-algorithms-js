@@ -112,6 +112,7 @@ class DoublyLinkedList {
     if (idx < 0 || idx > lastIdx) return undefined;
 
     // possible O(1) outcomes
+    // (there can be others such as idx 1 or lastIdx - 1)
     if (idx === 0) return this.first;
     if (idx === lastIdx) return this.last;
 
