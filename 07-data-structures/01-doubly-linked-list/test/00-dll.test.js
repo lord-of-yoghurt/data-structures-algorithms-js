@@ -68,7 +68,7 @@ describe('a doubly linked list', () => {
       assert.equal(2, testList.length);
     });
 
-    it('handles an empty list correctly', () => {
+    it('handles an empty list', () => {
       assert.equal(undefined, emptyList.pop());
     });
 
@@ -97,6 +97,29 @@ describe('a doubly linked list', () => {
 
     it('increments the length of the list', () => {
       assert.equal(3, testList.length);
+    });
+  });
+
+  describe('shift', () => {
+    it('removes a node from the beginning of the list', () => {
+      testList.shift();
+
+      assert.equal('apples', testList.first.data);
+    });
+
+    it('decrements the length of the list', () => {
+      assert.equal(2, testList.length);
+    });
+
+    it('handles a list with one item', () => {
+      emptyList.shift();
+
+      assert.equal(null, emptyList.first);
+      assert.equal(null, emptyList.last);
+    });
+
+    it('handles an empty list', () => {
+      assert.equal(undefined, emptyList.shift());
     });
   });
 });
