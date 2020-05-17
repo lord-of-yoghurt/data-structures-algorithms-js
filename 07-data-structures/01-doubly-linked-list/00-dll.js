@@ -64,6 +64,7 @@ class DoublyLinkedList {
     return node;
   }
 
+  // add to the beginning of the list
   unshift(data) {
     // DRY: if the list is empty, use push
     if (this.isEmpty()) return this.push(data);
@@ -82,16 +83,14 @@ class DoublyLinkedList {
     return this;
   }
 
+  // remove from the beginning of the list
   shift() {
     if (this.isEmpty()) return undefined;
 
     // grab the node to return
     const node = this.first;
 
-    if (this.length === 1) {
-      this.first = null;
-      this.last = null;
-    }
+    if (this.length === 1) return this.pop();
 
     else {
       // point first's previous to null
