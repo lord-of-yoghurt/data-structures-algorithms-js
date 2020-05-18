@@ -118,6 +118,16 @@ class BinarySearchTree {
       else this.findRec(val, current.right);
     }
   }
+
+  // perform preorder traversal recursively
+  // (first a node, then its left child, then its right child)
+  preOrder(node = this.root, fn) {
+    if (node) {
+      fn(node);
+      this.preOrder(node.left, fn);
+      this.preOrder(node.right, fn);
+    }
+  }
 }
 
 class Node {

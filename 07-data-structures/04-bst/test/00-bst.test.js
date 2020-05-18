@@ -77,4 +77,23 @@ describe('a BST', () => {
       assert.equal(null, testTree.find(11));
     });
   });
+
+  /*
+          50
+      25      75
+    10  40
+  */
+
+  describe('preOrder', () => {
+    it('iterates over a tree in preOrder fashion (node, L, R)', () => {
+      // traverse the tree and put every value in an array
+      const treeArr = [];
+
+      testTree.preOrder(testTree.root, (node) => {
+        treeArr.push(node.val);
+      });
+
+      assert.equal(10, treeArr[2]);
+    });
+  });
 });
