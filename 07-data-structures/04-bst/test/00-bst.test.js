@@ -110,4 +110,14 @@ describe('a BST', () => {
       assert.equal(50, treeArr[3]);
     });
   });
+
+  describe('countNodes', () => {
+    it('counts the number of nodes in the entire tree', () => {
+      assert.equal(5, testTree.countNodes());
+    });
+
+    it('works with subtrees', () => {
+      assert.equal(3, testTree.countNodes(testTree.find(25)));
+    });
+  });
 });

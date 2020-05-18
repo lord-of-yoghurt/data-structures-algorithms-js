@@ -138,6 +138,32 @@ class BinarySearchTree {
       this.inOrder(fn, node.right);
     }
   }
+
+  // count nodes recursively
+  // this is done in postorder form: left child, right child, node
+  countNodes(node = this.root) {
+    // counts for left and right sides
+    let lCount, rCount;
+
+    // if the node exists
+    if (node) {
+      // call the function on its left
+      // and assign the return value to lCount
+      // (this will continue being called until 
+      // we reach leaf nodes, at which point
+      // 0 will be returned)
+      lCount = this.countNodes(node.left);
+      // same for the right
+      rCount = this.countNodes(node.right);
+
+      // return whatever the counts are + 1 
+      // for the current node
+      return lCount + rCount + 1;
+    }
+
+    // base case: if there's no node, simply return 0
+    return 0;
+  }
 }
 
 class Node {
