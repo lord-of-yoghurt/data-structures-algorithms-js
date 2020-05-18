@@ -94,6 +94,20 @@ describe('a BST', () => {
       });
 
       assert.equal(10, treeArr[2]);
+      assert.equal(75, treeArr[4]);
+    });
+  });
+
+  describe('inOrder', () => {
+    it('iterates over a tree in inOrder fashion (L, node, R)', () => {
+      const treeArr = [];
+
+      testTree.inOrder((node) => {
+        treeArr.push(node.val);
+      });
+
+      assert.equal(40, treeArr[2]);
+      assert.equal(50, treeArr[3]);
     });
   });
 });

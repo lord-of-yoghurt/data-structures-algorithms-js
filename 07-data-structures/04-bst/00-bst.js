@@ -128,6 +128,16 @@ class BinarySearchTree {
       this.preOrder(fn, node.right);
     }
   }
+
+  // perform inorder traversal recursively
+  // (first a node's left child, then node, then right child)
+  inOrder(fn, node = this.root) {
+    if (node) {
+      this.inOrder(fn, node.left);
+      fn(node);
+      this.inOrder(fn, node.right);
+    }
+  }
 }
 
 class Node {
