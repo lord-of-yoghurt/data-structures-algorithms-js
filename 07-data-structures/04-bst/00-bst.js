@@ -15,7 +15,7 @@ class BinarySearchTree {
     let current = this.root;
 
     // this will run until we return
-    while (2 + 2 === 4) {
+    while (true) {
       // if the value is less than the value of the current
       // (going down the left side of the tree)
       if (val < current.val) {
