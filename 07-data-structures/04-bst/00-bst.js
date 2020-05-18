@@ -121,11 +121,11 @@ class BinarySearchTree {
 
   // perform preorder traversal recursively
   // (first a node, then its left child, then its right child)
-  preOrder(node = this.root, fn) {
+  preOrder(fn, node = this.root) {
     if (node) {
       fn(node);
-      this.preOrder(node.left, fn);
-      this.preOrder(node.right, fn);
+      this.preOrder(fn, node.left);
+      this.preOrder(fn, node.right);
     }
   }
 }

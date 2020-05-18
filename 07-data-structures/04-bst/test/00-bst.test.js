@@ -89,7 +89,7 @@ describe('a BST', () => {
       // traverse the tree and put every value in an array
       const treeArr = [];
 
-      testTree.preOrder(testTree.root, (node) => {
+      testTree.preOrder((node) => {
         treeArr.push(node.val);
       });
 
