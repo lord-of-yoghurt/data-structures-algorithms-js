@@ -140,6 +140,12 @@ describe('a BST', () => {
   });
 
   describe('isValid', () => {
+    // one of the tests makes tree invalid - 
+    // this puts it back to being valid
+    after(() => {
+      testTree.root.left.val = 25;
+    });
+
     it('determines whether a given tree is a BST', () => {
       assert.equal(true, testTree.isValid());
     });
@@ -149,11 +155,27 @@ describe('a BST', () => {
     });
 
     it('returns false for invalid BST\'s', () => {
-      const invalidBST = testTree;
-      invalidBST.root.left.val = 100;
-      // console.log(invalidBST);
+      testTree.root.left.val = 100;
 
-      assert.equal(false, invalidBST.isValid());
+      assert.equal(false, testTree.isValid());
+    });
+  });
+
+  /*
+          50
+    25          75
+  10  40      65  85
+    35  45
+  */
+  describe('inOrderPre', () => {
+    it('finds inorder predecessor of a given node', () => {
+      testTree.insert(35).insert(45).insert(65).insert(85);
+
+      assert.equal(45, testTree.inOrderPre(testTree.root).val);
+    });
+
+    it('handles a leaf node', () => {
+      assert.equal(null, testTree.inOrderPre(testTree.find(65)));
     });
   });
 });

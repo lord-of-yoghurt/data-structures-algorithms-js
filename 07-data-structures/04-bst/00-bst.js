@@ -206,6 +206,24 @@ class BinarySearchTree {
     // base case: an empty tree is a BST
     return true;
   }
+
+  // find inorder predecessor of a given node
+  // (max value of node's left subtree)
+  inOrderPre(node) {
+    let current = node;
+
+    if (node.left) {
+      current = node.left;
+
+      while (current.right) {
+        current = current.right;
+      }
+
+      return current;
+    }
+
+    return null;
+  }
 }
 
 class Node {
