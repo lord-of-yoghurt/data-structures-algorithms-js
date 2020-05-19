@@ -112,12 +112,22 @@ describe('a BST', () => {
   });
 
   describe('countNodes', () => {
-    it('counts the number of nodes in the entire tree', () => {
+    it('counts the number of nodes in a tree', () => {
       assert.equal(5, testTree.countNodes());
     });
 
     it('works with subtrees', () => {
       assert.equal(3, testTree.countNodes(testTree.find(25)));
+    });
+  });
+
+  describe('countHeight', () => {
+    it('counts the height of a tree', () => {
+      assert.equal(3, testTree.countHeight());
+    });
+
+    it('works with subtrees', () => {
+      assert.equal(2, testTree.countHeight(testTree.find(25)));
     });
   });
 });

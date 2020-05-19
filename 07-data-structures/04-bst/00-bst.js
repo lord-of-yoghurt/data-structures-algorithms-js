@@ -164,6 +164,24 @@ class BinarySearchTree {
     // base case: if there's no node, simply return 0
     return 0;
   }
+
+  // height of a node is the number of edges 
+  // from the node to a leaf node via longest path.
+  // height of a tree is the height of its root
+  countHeight(node = this.root) {
+    let lHeight, rHeight;
+
+    // similar to counting nodes, but...
+    if (node) {
+      lHeight = this.countHeight(node.left);
+      rHeight = this.countHeight(node.right);
+
+      // ...here we're using the max instead of the sum
+      return Math.max(lHeight, rHeight) + 1;
+    }
+
+    return 0;
+  }
 }
 
 class Node {
