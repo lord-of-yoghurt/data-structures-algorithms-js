@@ -212,16 +212,24 @@ class BinarySearchTree {
   inOrderPre(node) {
     let current = node;
 
+    // look to the left of the node.
+    // if something is there,
     if (node.left) {
+      // go there
       current = node.left;
 
+      // while that node has a right child
       while (current.right) {
+        // keep looking for the rightmost child
         current = current.right;
       }
 
+      // return the result
       return current;
     }
 
+    // otherwise, there's no predecessor,
+    // so return null
     return null;
   }
 }
