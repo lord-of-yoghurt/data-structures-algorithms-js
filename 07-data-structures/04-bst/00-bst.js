@@ -182,6 +182,30 @@ class BinarySearchTree {
 
     return 0;
   }
+
+  // check if this is a valid BST, which has to satisfy
+  // node.left.val < node.val < node.right.val
+  // for any given non-leaf node
+  isValid(node = this.root, minVal = -Infinity, maxVal = Infinity) {
+    // if the node is not null:
+    if (node) {
+      // if its value is between min and max
+      if (minVal < node.val && node.val < maxVal) {
+        // determine whether the same applies to BOTH
+        // its left and right subtrees, recursively
+        return (
+          this.isValid(node.left, minVal, node.val) &&
+          this.isValid(node.right, node.val, maxVal)
+        );
+      }
+
+      // otherwise, it's not a valid BST
+      return false;
+    }
+
+    // base case: an empty tree is a BST
+    return true;
+  }
 }
 
 class Node {

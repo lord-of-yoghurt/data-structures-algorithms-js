@@ -130,4 +130,22 @@ describe('a BST', () => {
       assert.equal(2, testTree.countHeight(testTree.find(25)));
     });
   });
+
+  describe('isValid', () => {
+    it('determines whether a given tree is a BST', () => {
+      assert.equal(true, testTree.isValid());
+    });
+
+    it('works with subtrees', () => {
+      assert.equal(true, testTree.isValid(testTree.find(25)));
+    });
+
+    it('returns false for invalid BST\'s', () => {
+      const invalidBST = testTree;
+      invalidBST.root.left.val = 100;
+      // console.log(invalidBST);
+
+      assert.equal(false, invalidBST.isValid());
+    });
+  });
 });
