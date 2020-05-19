@@ -99,15 +99,23 @@ describe('a BST', () => {
   });
 
   describe('inOrder', () => {
-    it('iterates over a tree in inOrder fashion (L, node, R)', () => {
-      const treeArr = [];
+    const treeArr = [];
 
+    before((done) => {
       testTree.inOrder((node) => {
         treeArr.push(node.val);
       });
 
+      done();
+    });
+
+    it('iterates over a tree in inOrder fashion (L, node, R)', () => {
       assert.equal(40, treeArr[2]);
       assert.equal(50, treeArr[3]);
+    });
+
+    it('sorts the values of all nodes if put in an array', () => {
+      assert.deepStrictEqual(treeArr, [10, 25, 40, 50, 75]);
     });
   });
 
