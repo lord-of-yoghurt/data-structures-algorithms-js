@@ -165,7 +165,7 @@ describe('a BST', () => {
             50
      25            75
   10    40      65    85
-      35  45  55  70
+      35  45  
   */
   describe('inOrderPre', () => {
     it('finds inorder predecessor of a given node', () => {
@@ -174,10 +174,21 @@ describe('a BST', () => {
       assert.equal(45, testTree.inOrderPre(testTree.root).val);
     });
 
-    it('handles a leaf node', () => {
-      assert.equal(null, testTree.inOrderPre(testTree.find(65)));
+    it('handles a leaf node that has a predecessor', () => {
+      assert.equal(50, testTree.inOrderPre(testTree.find(65)).val);
+    });
+
+    it('handles a leaf node that has no predecessor', () => {
+      assert.equal(null, testTree.inOrderPre(testTree.find(10)));
     });
   });
+
+  /*
+            50
+     25            75
+  10    40      65    85
+      35  45  55  70
+  */
 
   describe('inOrderSucc', () => {
     it('finds inorder successor of a given node', () => {
