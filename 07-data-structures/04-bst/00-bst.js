@@ -212,6 +212,7 @@ class BinarySearchTree {
   inOrderPre(node) {
     let current;
 
+    // CASE 1:
     // look to the left of the node.
     // if something is there,
     if (node.left) {
@@ -228,28 +229,33 @@ class BinarySearchTree {
       return current;
     }
 
-    // otherwise, the predecessor is found
+    // CASE 2:
+    // if no left node, the predecessor is found
     // by searching for the given node and returning
     // the node where we take the last right turn
+    else {
+      // the temp variable is to store the potential
+      // predecessor as we traverse down the tree
+      let temp = null;
+      current = this.root;
 
-    // the temp variable is to store the potential
-    // predecessor as we traverse down the tree
-    let temp = null;
-    current = this.root;
-
-    while (current.val != node.val) {
-      // this is the right turn - update the temp
-      if (node.val > current.val) {
-        temp = current;
-        current = current.right;
-      // otherwise, if the given node is less than
-      // current, make a left turn
-      } else {
-        current = current.left;
+      while (current.val != node.val) {
+        // this is the right turn - update the temp
+        if (node.val > current.val) {
+          temp = current;
+          current = current.right;
+          // otherwise, if the given node is less than
+          // current, make a left turn
+        } else {
+          current = current.left;
+        }
       }
-    }
 
-    return temp;
+      // temp will remain null if the node we're given
+      // has the minimum value of the tree
+      // (i.e. it can't have a predecessor)
+      return temp;
+    }
   }
 
   // find inorder successor of a given node
