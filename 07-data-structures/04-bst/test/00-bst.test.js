@@ -54,7 +54,7 @@ describe('a BST', () => {
     });
   });
 
-  describe('find', () => {
+  describe('find (iterative)', () => {
     it('returns a node if it\'s present in the tree', () => {
       assert.equal(10, testTree.find(10).val);
     });
@@ -195,6 +195,14 @@ describe('a BST', () => {
       testTree.insert(55).insert(70);
 
       assert.equal(55, testTree.inOrderSucc(testTree.root).val);
+    });
+
+    it('handles a leaf node that has a successor', () => {
+      assert.equal(65, testTree.inOrderSucc(testTree.find(55)).val);
+    });
+
+    it('handles a leaf node that has no successor', () => {
+      assert.equal(null, testTree.inOrderSucc(testTree.find(85)));
     });
   });
 });

@@ -241,7 +241,7 @@ class BinarySearchTree {
 
       while (current.val != node.val) {
         // this is the right turn - update the temp
-        if (node.val > current.val) {
+        if (current.val < node.val) {
           temp = current;
           current = current.right;
           // otherwise, if the given node is less than
@@ -260,8 +260,9 @@ class BinarySearchTree {
 
   // find inorder successor of a given node
   // (min value of node's RIGHT subtree)
+  // (the opposite of inOrderPre - refer to comments above)
   inOrderSucc(node) {
-    let current = node;
+    let current = null;
 
     if (node.right) {
       current = node.right;
@@ -273,7 +274,22 @@ class BinarySearchTree {
       return current;
     }
 
-    return null;
+    else {
+      let temp = null;
+      current = this.root;
+
+      while (current.val != node.val) {
+        // the left turn
+        if (current.val > node.val) {
+          temp = current;
+          current = current.left;
+        } else {
+          current = current.right;
+        }
+      }
+
+      return temp;
+    }
   }
 }
 
