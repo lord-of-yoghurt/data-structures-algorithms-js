@@ -197,10 +197,18 @@ class DoublyLinkedList {
 
   // remove a node from a given position
   remove(idx) {
-    if (!idx || idx < 0 || this.isEmpty()) return undefined;
+    // do nothing if index is out of bounds
+    if (!idx || idx < 0 || this.isEmpty() || idx >= this.length) {
+      return undefined;
+    }
 
-    if (this.length === 1 || idx >= this.length) return this.pop();
+    // if only one element, or the index addresses 
+    // the last element, use pop
+    if (this.length === 1 || idx === this.length - 1) {
+      return this.pop();
+    }
 
+    // for the first element, use unshift
     if (idx === 0) return this.shift();
 
     const node = this.get(idx);

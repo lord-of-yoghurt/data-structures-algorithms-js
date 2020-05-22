@@ -178,5 +178,18 @@ describe('a doubly linked list', () => {
 
       assert.equal('peaches', testList.get(3).data);
     });
+
+    it('preserves the connections after removal', () => {
+      assert.equal('peaches', testList.get(2).next.data);
+      assert.equal('mangos', testList.get(3).prev.data);
+    });
+
+    it('updates the length of the list', () => {
+      assert.equal(6, testList.length);
+    });
+
+    it('handles out-of-bound indices', () => {
+      assert.equal(undefined, testList.remove(10));
+    });
   });
 });
