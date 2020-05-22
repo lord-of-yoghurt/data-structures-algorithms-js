@@ -148,11 +148,27 @@ describe('a doubly linked list', () => {
   });
 
   describe('insert', () => {
-    it('it adds a node at a given position', () => {
+    it('adds a node at a given position', () => {
       testList.insert(2, 'mangos');
-      testList.toString();
 
       assert.equal('mangos', testList.get(2).data);
+    });
+
+    it('ensures the new node is properly connected', () => {
+      let node = testList.get(2);
+
+      assert.equal('oranges', node.prev.data);
+      assert.equal('watermelons', node.next.data);
+    });
+
+    it('updates the length of the list', () => {
+      assert.equal(6, testList.length);
+    });
+
+    it('handles out-of-bound indices', () => {
+      testList.insert(6, 'grapes');
+
+      assert.equal('grapes', testList.last.data);
     });
   });
 });
