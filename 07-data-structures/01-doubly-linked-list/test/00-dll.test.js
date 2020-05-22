@@ -171,4 +171,12 @@ describe('a doubly linked list', () => {
       assert.equal('grapes', testList.last.data);
     });
   });
+
+  describe('remove', () => {
+    it('deletes a node from a given position', () => {
+      testList.remove(3);
+
+      assert.equal('peaches', testList.get(3).data);
+    });
+  });
 });

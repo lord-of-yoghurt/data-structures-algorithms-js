@@ -35,7 +35,7 @@ class DoublyLinkedList {
 
       console.log(str);
     }
-    
+
     return this;
   }
 
@@ -193,6 +193,31 @@ class DoublyLinkedList {
     this.length++;
 
     return this;
+  }
+
+  // remove a node from a given position
+  remove(idx) {
+    if (!idx || idx < 0 || this.isEmpty()) return undefined;
+
+    if (this.length === 1 || idx >= this.length) return this.pop();
+
+    if (idx === 0) return this.shift();
+
+    const node = this.get(idx);
+
+    // set node's previous' next to node's next
+    node.prev.next = node.next;
+
+    // set node's next's previous to node's previous
+    node.next.prev = node.prev;
+
+    // disconnect the node
+    node.prev = null;
+    node.next = null;
+
+    this.length--;
+
+    return node;
   }
 }
 
