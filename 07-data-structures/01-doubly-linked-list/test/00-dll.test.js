@@ -146,4 +146,13 @@ describe('a doubly linked list', () => {
       assert.equal(undefined, testList.set(10, 'turnips'));
     });
   });
+
+  describe('insert', () => {
+    it('it adds a node at a given position', () => {
+      testList.insert(2, 'mangos');
+      testList.toString();
+
+      assert.equal('mangos', testList.get(2).data);
+    });
+  });
 });

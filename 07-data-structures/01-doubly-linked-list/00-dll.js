@@ -157,6 +157,37 @@ class DoublyLinkedList {
 
     return undefined;
   }
+
+  // add a node at a given position
+  insert(idx, data) {
+    // handle out-of-bound indices
+    if (idx < 0) return undefined;
+
+    if (idx >= this.length || this.isEmpty()) {
+      return this.push(data);
+    }
+
+    if (idx === 0) return this.unshift(data);
+
+    const newNode = new Node(data),
+          current = this.get(idx);
+    
+    // new node's previous is now current's previous
+    newNode.prev = current.prev;
+
+    // current's previous' next is now the new node
+    current.prev.next = newNode;
+
+    // current is now the new node's next
+    newNode.next = current;
+
+    // current's previous is now the new node
+    current.prev = newNode;
+
+    this.length++;
+
+    return this;
+  }
 }
 
 class Node {
