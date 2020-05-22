@@ -1,4 +1,4 @@
-// Linked lists use nodes that point forward
+// Doubly linked lists use nodes that point forward
 // to the next node and backward to the 
 // previous node. This makes removing nodes
 // and traversing backwards much easier.
@@ -15,21 +15,27 @@ class DoublyLinkedList {
   }
 
   toString() {
-    let current = this.first;
-
-    let str = '';
-
-    for (let i = 0; i < this.length; i++) {
-      if (i === this.length - 1) {
-        str += `(${current.data})`;
-      } else {
-        str += `(${current.data}) ⇌  `;
-        current = current.next;
-      }
+    if (this.isEmpty()) {
+      console.log('The list is empty. Add some stuff!');
     }
 
-    console.log(str);
+    else {
+      let current = this.first;
 
+      let str = '';
+
+      for (let i = 0; i < this.length; i++) {
+        if (i === this.length - 1) {
+          str += `(${current.data})`;
+        } else {
+          str += `(${current.data}) ⇌  `;
+          current = current.next;
+        }
+      }
+
+      console.log(str);
+    }
+    
     return this;
   }
 
