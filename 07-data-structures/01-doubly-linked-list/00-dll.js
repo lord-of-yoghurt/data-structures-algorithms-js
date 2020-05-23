@@ -118,10 +118,11 @@ class DoublyLinkedList {
     // grab the node to return
     const node = this.first;
 
-    // point first's previous to null
-    this.first.previous = null;
     // previous first's next becomes the new first
     this.first = node.next;
+
+    // point first's previous to null
+    this.first.prev = null;
 
     this.length--;
 
@@ -227,6 +228,10 @@ class DoublyLinkedList {
 
     return node;
   }
+
+  // reverse() {
+  //   
+  // }
 }
 
 class Node {

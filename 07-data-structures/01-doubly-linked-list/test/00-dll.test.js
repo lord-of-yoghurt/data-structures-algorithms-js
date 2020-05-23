@@ -64,6 +64,10 @@ describe('a doubly linked list', () => {
       assert.equal('oranges', testList.last.data);
     });
 
+    it('ensures the last node still points to null', () => {
+      assert.equal(null, testList.last.next);
+    });
+
     it('decrements the list length', () => {
       assert.equal(2, testList.length);
     });
@@ -105,6 +109,10 @@ describe('a doubly linked list', () => {
       testList.shift();
 
       assert.equal('apples', testList.first.data);
+    });
+
+    it('ensures the first node\'s previous is null', () => {
+      assert.equal(null, testList.first.prev);
     });
 
     it('decrements the length of the list', () => {
@@ -189,7 +197,18 @@ describe('a doubly linked list', () => {
     });
 
     it('handles out-of-bound indices', () => {
+      testList.toString();
       assert.equal(undefined, testList.remove(10));
     });
   });
+
+  // describe('reverse', () => {
+  //   it('reverses the order of the list', () => {
+  //     testList.reverse();
+
+  //     assert.equal('grapes', testList.first.data);
+  //     assert.equal('peaches', testList.get(2).data);
+  //     assert.equal('apples', testList.last.data);
+  //   });
+  // });
 });
