@@ -201,13 +201,25 @@ describe('a doubly linked list', () => {
     });
   });
 
+  // before reversal
+  // (apples) ⇌ (oranges) ⇌ (mangos) ⇌ (peaches) ⇌ (strawberries) ⇌ (grapes)
   describe('reverse', () => {
     it('reverses the order of the list', () => {
       testList.reverse();
 
       assert.equal('grapes', testList.first.data);
-      assert.equal('peaches', testList.get(2).data);
       assert.equal('apples', testList.last.data);
+      assert.equal('peaches', testList.get(2).data);
+    });
+  });
+
+  describe('reverse (recursive)', () => {
+    it('reverses the order of the list', () => {
+      testList.reverseRec();
+
+      assert.equal('apples', testList.first.data);
+      assert.equal('grapes', testList.last.data);
+      assert.equal('strawberries', testList.get(4).data);
     });
   });
 });

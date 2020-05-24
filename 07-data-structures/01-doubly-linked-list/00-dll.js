@@ -28,7 +28,7 @@ class DoublyLinkedList {
         if (i === this.length - 1) {
           str += `(${current.data})`;
         } else {
-          str += `(${current.data}) ⇌  `;
+          str += `(${current.data}) ⇌ `;
           current = current.next;
         }
       }
@@ -269,6 +269,37 @@ class DoublyLinkedList {
     this.first = temp;
 
     return this;
+  }
+
+  // reverse the DLL recursively
+  reverseRec(node = this.first) {
+    // handle edge cases
+    if (this.isEmpty()) return false;
+
+    if (this.length === 1) return this;
+
+    // declare the temp variable for all the swapping
+    let temp;
+
+    // BASE CASE:
+    // if the node we're on doesn't exist,
+    // then the list is reversed - 
+    // swap the first and the last pointers
+    if (!node) {
+      temp = this.first;
+      this.first = this.last;
+      this.last = temp;
+      return this;
+    }
+
+    // otherwise, swap the next/prev pointers
+    // (refer to iterative method for more details)
+    temp = node.prev;
+    node.prev = node.next;
+    node.next = temp;
+    // call the function recursively on the next node
+    // (really it's previous though :-D )
+    this.reverseRec(node.prev);
   }
 }
 
