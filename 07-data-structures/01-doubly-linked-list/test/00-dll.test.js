@@ -197,18 +197,17 @@ describe('a doubly linked list', () => {
     });
 
     it('handles out-of-bound indices', () => {
-      testList.toString();
       assert.equal(undefined, testList.remove(10));
     });
   });
 
-  // describe('reverse', () => {
-  //   it('reverses the order of the list', () => {
-  //     testList.reverse();
+  describe('reverse', () => {
+    it('reverses the order of the list', () => {
+      testList.reverse();
 
-  //     assert.equal('grapes', testList.first.data);
-  //     assert.equal('peaches', testList.get(2).data);
-  //     assert.equal('apples', testList.last.data);
-  //   });
-  // });
+      assert.equal('grapes', testList.first.data);
+      assert.equal('peaches', testList.get(2).data);
+      assert.equal('apples', testList.last.data);
+    });
+  });
 });

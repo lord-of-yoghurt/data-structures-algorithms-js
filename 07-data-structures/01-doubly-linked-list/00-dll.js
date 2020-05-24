@@ -229,9 +229,47 @@ class DoublyLinkedList {
     return node;
   }
 
-  // reverse() {
-  //   
-  // }
+  // reversing a doubly linked list means reversing
+  // the pointers between nodes. for any two nodes (a) ⇌ (b):
+  // a.prev becomes b
+  // b.next becomes a
+  reverse() {
+    if (this.isEmpty()) {
+      throw new Error('The list is empty!');
+    }
+
+    if (this.length === 1) return this;
+
+    let current = this.first;
+    let temp;
+
+    while (current) {
+      // store current's previous node
+      temp = current.prev;
+      // the reversal: current node's previous
+      // becomes its next
+      current.prev = current.next;
+      // temp is storing what used to be
+      // current's previous. 
+      // NOW it becomes current's next
+      current.next = temp;
+      // move on to the next node
+      // (except now it's previous after reversal)
+      current = current.prev;
+    }
+
+    // temp is currently the second node
+    // of the REVERSED list. 
+
+    // advance it backwards
+    temp = temp.prev;
+    // reassign the last
+    this.last = this.first;
+    // reassign the first;
+    this.first = temp;
+
+    return this;
+  }
 }
 
 class Node {
