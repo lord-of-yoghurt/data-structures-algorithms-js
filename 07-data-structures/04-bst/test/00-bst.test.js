@@ -1,6 +1,6 @@
 const assert = require('assert').strict;
 
-const { BinarySearchTree } = require('../00-bst');
+const { BinarySearchTree, Node } = require('../00-bst');
 
 const testTree = new BinarySearchTree(),
       emptyTree = new BinarySearchTree();
@@ -84,6 +84,19 @@ describe('a BST', () => {
       const parent = testTree.findParent(node);
       
       assert.equal(25, parent.val);
+    });
+
+    it('handles a node that doesn\'t exist', () => {
+      const node = new Node(42);
+      assert.equal(null, testTree.findParent(node));
+    });
+
+    it('handles the root of a tree', () => {
+      assert.equal(null, testTree.findParent(testTree.root));
+    });
+
+    it('handles a value that\'s not a node', () => {
+      assert.equal(null, testTree.findParent(25));
     });
   });
 

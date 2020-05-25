@@ -344,4 +344,4 @@ class Node {
   }
 }
 
-module.exports = { BinarySearchTree };
+module.exports = { BinarySearchTree, Node };
