@@ -119,6 +119,45 @@ class BinarySearchTree {
     }
   }
 
+  // find the parent of a given node
+  findParent(node) {
+    if (
+      // there's no root or
+      !this.root || 
+      // the node we're looking at is the root or
+      node.val === this.root.val ||
+      // the input isn't a node at all
+      !(node instanceof Node)
+    ) return null;
+
+    let parent = null,
+        current = this.root;
+
+    while (true) {
+      if (parent && current.val === node.val) {
+        return parent;
+      }
+      // the left side
+      if (node.val < current.val) {
+        // if there is a node
+        if (!current.left) return null;
+        else {
+          parent = current;
+          current = current.left;
+        }
+      }
+
+      // the right side
+      else if (node.val > current.val) {
+        if (!current.right) return null;
+        else {
+          parent = current;
+          current = current.right;
+        }
+      }
+    }
+  }
+
   // perform preorder traversal recursively
   // (first a node, then its left child, then its right child)
   preOrder(fn, node = this.root) {

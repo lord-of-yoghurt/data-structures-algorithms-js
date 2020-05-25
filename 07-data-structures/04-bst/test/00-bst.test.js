@@ -78,6 +78,15 @@ describe('a BST', () => {
     });
   });
 
+  describe('findParent', () => {
+    it('returns the parent of a given node', () => {
+      const node = testTree.find(10);
+      const parent = testTree.findParent(node);
+      
+      assert.equal(25, parent.val);
+    });
+  });
+
   /*
           50
       25      75
