@@ -21,12 +21,12 @@ describe('a node', () => {
 });
 
 describe('a doubly linked list', () => {
-  it('knows its first node', () => {
-    assert.equal(null, testList.first);
+  it('knows its head node', () => {
+    assert.equal(null, testList.head);
   });
 
-  it('knows its last node', () => {
-    assert.equal(null, testList.last);
+  it('knows its tail node', () => {
+    assert.equal(null, testList.tail);
   });
 
   it('has a length', () => {
@@ -37,15 +37,15 @@ describe('a doubly linked list', () => {
     it('handles an empty list', () => {
       testList.push('apples');
 
-      assert.equal('apples', testList.first.data);
-      assert.equal('apples', testList.last.data);
+      assert.equal('apples', testList.head.data);
+      assert.equal('apples', testList.tail.data);
     });
 
     it('adds a new node to the end of a list', () => {
       testList.push('oranges');
 
-      assert.equal('apples', testList.first.data);
-      assert.equal('oranges', testList.last.data);
+      assert.equal('apples', testList.head.data);
+      assert.equal('oranges', testList.tail.data);
     });
 
     it('increments the length of the list', () => {
@@ -61,11 +61,11 @@ describe('a doubly linked list', () => {
     it('removes a node from the end of the list', () => {
       testList.pop();
 
-      assert.equal('oranges', testList.last.data);
+      assert.equal('oranges', testList.tail.data);
     });
 
-    it('ensures the last node still points to null', () => {
-      assert.equal(null, testList.last.next);
+    it('ensures the tail node still points to null', () => {
+      assert.equal(null, testList.tail.next);
     });
 
     it('decrements the list length', () => {
@@ -80,8 +80,8 @@ describe('a doubly linked list', () => {
       emptyList.push('remove this!');
       emptyList.pop();
 
-      assert.equal(null, emptyList.first);
-      assert.equal(null, emptyList.last);
+      assert.equal(null, emptyList.head);
+      assert.equal(null, emptyList.tail);
     });
   });
 
@@ -89,14 +89,14 @@ describe('a doubly linked list', () => {
     it('handles an empty list', () => {
       emptyList.unshift('peppers');
 
-      assert.equal('peppers', emptyList.first.data);
-      assert.equal('peppers', emptyList.last.data);
+      assert.equal('peppers', emptyList.head.data);
+      assert.equal('peppers', emptyList.tail.data);
     });
 
     it('adds a node to the beginning of the list', () => {
       testList.unshift('bananas');
 
-      assert.equal('bananas', testList.first.data);
+      assert.equal('bananas', testList.head.data);
     });
 
     it('increments the length of the list', () => {
@@ -108,11 +108,11 @@ describe('a doubly linked list', () => {
     it('removes a node from the beginning of the list', () => {
       testList.shift();
 
-      assert.equal('apples', testList.first.data);
+      assert.equal('apples', testList.head.data);
     });
 
-    it('ensures the first node\'s previous is null', () => {
-      assert.equal(null, testList.first.prev);
+    it('ensures the head node\'s previous is null', () => {
+      assert.equal(null, testList.head.prev);
     });
 
     it('decrements the length of the list', () => {
@@ -122,8 +122,8 @@ describe('a doubly linked list', () => {
     it('handles a list with one item', () => {
       emptyList.shift();
 
-      assert.equal(null, emptyList.first);
-      assert.equal(null, emptyList.last);
+      assert.equal(null, emptyList.head);
+      assert.equal(null, emptyList.tail);
     });
 
     it('handles an empty list', () => {
@@ -176,7 +176,7 @@ describe('a doubly linked list', () => {
     it('handles out-of-bound indices', () => {
       testList.insert(6, 'grapes');
 
-      assert.equal('grapes', testList.last.data);
+      assert.equal('grapes', testList.tail.data);
     });
   });
 
@@ -207,8 +207,8 @@ describe('a doubly linked list', () => {
     it('reverses the order of the list', () => {
       testList.reverse();
 
-      assert.equal('grapes', testList.first.data);
-      assert.equal('apples', testList.last.data);
+      assert.equal('grapes', testList.head.data);
+      assert.equal('apples', testList.tail.data);
       assert.equal('peaches', testList.get(2).data);
     });
   });
@@ -217,8 +217,8 @@ describe('a doubly linked list', () => {
     it('reverses the order of the list', () => {
       testList.reverseRec();
 
-      assert.equal('apples', testList.first.data);
-      assert.equal('grapes', testList.last.data);
+      assert.equal('apples', testList.head.data);
+      assert.equal('grapes', testList.tail.data);
       assert.equal('strawberries', testList.get(4).data);
     });
   });

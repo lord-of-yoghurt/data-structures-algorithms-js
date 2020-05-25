@@ -5,8 +5,8 @@
 
 class DoublyLinkedList {
   constructor() {
-    this.first = null;
-    this.last = null;
+    this.head = null;
+    this.tail = null;
     this.length = 0;
   }
 
@@ -20,7 +20,7 @@ class DoublyLinkedList {
     }
 
     else {
-      let current = this.first;
+      let current = this.head;
 
       let str = '';
 
@@ -44,20 +44,20 @@ class DoublyLinkedList {
     const newNode = new Node(data);
 
     // if list empty, new node
-    // becomes first and last
+    // becomes head and tail
     if (this.isEmpty()) {
-      this.first = newNode;
-      this.last = newNode;
+      this.head = newNode;
+      this.tail = newNode;
     } 
 
     // otherwise, point the pointers
     else {
-      // last's next becomes the new node
-      this.last.next = newNode;
-      // new node's previous becomes current last
-      newNode.prev = this.last;
-      // last gets reassigned to the new node
-      this.last = newNode;
+      // tail's next becomes the new node
+      this.tail.next = newNode;
+      // new node's previous becomes current tail
+      newNode.prev = this.tail;
+      // tail gets reassigned to the new node
+      this.tail = newNode;
     }
 
     this.length++;
@@ -69,19 +69,19 @@ class DoublyLinkedList {
   pop() {
     if (this.isEmpty()) return undefined;
 
-    // grab the last node
-    const node = this.last;
+    // grab the tail node
+    const node = this.tail;
 
     if (this.length === 1) {
-      this.first = null;
-      this.last = null;
+      this.head = null;
+      this.tail = null;
     }
 
     else {
       // point its previous to nothingness
       node.prev.next = null;
-      // make its previous the new last
-      this.last = node.prev;
+      // make its previous the new tail
+      this.tail = node.prev;
     }
 
     this.length--;
@@ -96,12 +96,12 @@ class DoublyLinkedList {
 
     const newNode = new Node(data);
 
-    // point first's previous to new node
-    this.first.prev = newNode;
-    // point new node's next to first
-    newNode.next = this.first;
-    // new node becomes first
-    this.first = newNode;
+    // point head's previous to new node
+    this.head.prev = newNode;
+    // point new node's next to head
+    newNode.next = this.head;
+    // new node becomes head
+    this.head = newNode;
 
     this.length++;
 
@@ -116,13 +116,13 @@ class DoublyLinkedList {
     if (this.length === 1) return this.pop();
 
     // grab the node to return
-    const node = this.first;
+    const node = this.head;
 
-    // previous first's next becomes the new first
-    this.first = node.next;
+    // previous head's next becomes the new head
+    this.head = node.next;
 
-    // point first's previous to null
-    this.first.prev = null;
+    // point head's previous to null
+    this.head.prev = null;
 
     this.length--;
 
@@ -131,18 +131,18 @@ class DoublyLinkedList {
 
   // find a node by index
   get(idx) {
-    // determine the last item's index for later
-    const lastIdx = this.length - 1;
+    // determine the tail item's index for later
+    const tailIdx = this.length - 1;
 
     // out-of-bound indices not allowed
-    if (idx < 0 || idx > lastIdx) return undefined;
+    if (idx < 0 || idx > tailIdx) return undefined;
 
     // possible O(1) outcomes
-    // (there can be others such as idx 1 or lastIdx - 1)
-    if (idx === 0) return this.first;
-    if (idx === lastIdx) return this.last;
+    // (there can be others such as idx 1 or tailIdx - 1)
+    if (idx === 0) return this.head;
+    if (idx === tailIdx) return this.tail;
 
-    let current = this.first;
+    let current = this.head;
 
     for (let i = 0; i < idx; i++) {
       current = current.next;
@@ -204,12 +204,12 @@ class DoublyLinkedList {
     }
 
     // if only one element, or the index addresses 
-    // the last element, use pop
+    // the tail element, use pop
     if (this.length === 1 || idx === this.length - 1) {
       return this.pop();
     }
 
-    // for the first element, use unshift
+    // for the head element, use unshift
     if (idx === 0) return this.shift();
 
     const node = this.get(idx);
@@ -240,7 +240,7 @@ class DoublyLinkedList {
 
     if (this.length === 1) return this;
 
-    let current = this.first;
+    let current = this.head;
     let temp;
 
     while (current) {
@@ -263,16 +263,16 @@ class DoublyLinkedList {
 
     // advance it backwards
     temp = temp.prev;
-    // reassign the last
-    this.last = this.first;
-    // reassign the first;
-    this.first = temp;
+    // reassign the tail
+    this.tail = this.head;
+    // reassign the head;
+    this.head = temp;
 
     return this;
   }
 
   // reverse the DLL recursively
-  reverseRec(node = this.first) {
+  reverseRec(node = this.head) {
     // handle edge cases
     if (this.isEmpty()) return false;
 
@@ -284,11 +284,11 @@ class DoublyLinkedList {
     // BASE CASE:
     // if the node we're on doesn't exist,
     // then the list is reversed - 
-    // swap the first and the last pointers
+    // swap the head and the tail pointers
     if (!node) {
-      temp = this.first;
-      this.first = this.last;
-      this.last = temp;
+      temp = this.head;
+      this.head = this.tail;
+      this.tail = temp;
       return this;
     }
 
