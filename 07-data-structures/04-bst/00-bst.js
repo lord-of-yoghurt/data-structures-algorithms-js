@@ -299,6 +299,10 @@ class Node {
     this.left = null;
     this.right = null;
   }
+
+  isLeaf() {
+    return (!this.left && !this.right);
+  }
 }
 
 module.exports = { BinarySearchTree };
