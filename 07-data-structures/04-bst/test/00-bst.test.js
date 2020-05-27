@@ -229,10 +229,16 @@ describe('a BST', () => {
   });
 
   describe('remove', () => {
-    it('deletes a leaf node with a given value', () => {
+    it('deletes a leaf node', () => {
       testTree.remove(70);
 
       assert.equal(null, testTree.find(65).right);
+    });
+
+    it('deletes a node with one child', () => {
+      testTree.remove(65);
+
+      assert.equal(55, testTree.find(75).left.val);
     });
   });
 });

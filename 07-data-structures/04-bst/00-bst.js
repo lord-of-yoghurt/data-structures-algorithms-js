@@ -338,24 +338,43 @@ class BinarySearchTree {
     // find the node
     const node = this.find(val);
 
-    if (node) {
-      // case 1: node is a leaf
-      if (node.isLeaf()) {
-        // find its parent
-        const parent = this.findParent(node);
-        
-        // remove it
+    if (!node) return null;
+
+    // get its parent
+    const parent = this.findParent(node);
+
+    // case 1: node is a leaf
+    if (node.isLeaf()) {
+      // remove it
+      if (parent.left.val === node.val) {
+        parent.left = null;
+      } else {
+        parent.right = null;
+      }
+    }
+
+    // case 2: node has one child
+    else if (!node.left || !node.right) {
+      // if it's a left child...
+      if (node.left) {
         if (parent.left.val === node.val) {
-          parent.left = null;
+          parent.left = node.left;
         } else {
-          parent.right = null;
+          parent.right = node.left;
         }
       }
 
-      return node;
+      // if it's a right child...
+      else {
+        if (parent.left.val === node.val) {
+          parent.left = node.right;
+        } else {
+          parent.right = node.right;
+        }
+      }
     }
 
-    return null;
+    return node;
   }
 }
 
