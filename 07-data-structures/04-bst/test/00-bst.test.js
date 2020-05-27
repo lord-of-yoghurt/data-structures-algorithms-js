@@ -227,4 +227,12 @@ describe('a BST', () => {
       assert.equal(null, testTree.inOrderSucc(testTree.find(85)));
     });
   });
+
+  describe('remove', () => {
+    it('deletes a leaf node with a given value', () => {
+      testTree.remove(70);
+
+      assert.equal(null, testTree.find(65).right);
+    });
+  });
 });

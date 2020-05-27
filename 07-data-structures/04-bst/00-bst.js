@@ -330,6 +330,33 @@ class BinarySearchTree {
       return temp;
     }
   }
+
+  // remove a node with given value
+  remove(val) {
+    if (!this.root) return null;
+
+    // find the node
+    const node = this.find(val);
+
+    if (node) {
+      // case 1: node is a leaf
+      if (node.isLeaf()) {
+        // find its parent
+        const parent = this.findParent(node);
+        
+        // remove it
+        if (parent.left.val === node.val) {
+          parent.left = null;
+        } else {
+          parent.right = null;
+        }
+      }
+
+      return node;
+    }
+
+    return null;
+  }
 }
 
 class Node {
