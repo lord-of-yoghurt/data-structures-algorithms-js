@@ -210,6 +210,7 @@ describe('a BST', () => {
      25            75
   10    40      65    85
       35  45  55  70
+                60
   */
 
   describe('inOrderSucc', () => {
@@ -229,6 +230,10 @@ describe('a BST', () => {
   });
 
   describe('remove', () => {
+    after(() => {
+      testTree.insert(65).insert(70);
+    });
+
     it('deletes a leaf node', () => {
       testTree.remove(70);
 
@@ -239,6 +244,19 @@ describe('a BST', () => {
       testTree.remove(65);
 
       assert.equal(55, testTree.find(75).left.val);
+    });
+  });
+
+  describe('replaceWithSucc', () => {
+    before(() => {
+      testTree.insert(60);
+    });
+
+    it('replaces a node with its inorder successor', () => {
+      testTree.replaceWithSucc(testTree.root);
+
+      assert.equal(55, testTree.root.val);
+      assert.equal(60, testTree.find(65).right.val);
     });
   });
 });
