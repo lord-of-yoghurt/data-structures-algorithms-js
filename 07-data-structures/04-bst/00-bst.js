@@ -331,6 +331,29 @@ class BinarySearchTree {
     }
   }
 
+  // replace a node for its inorder successor
+  // (helper for the ultra-bloated remove method)
+  replaceWithSucc(node) {
+    if (!node || !this.root) return undefined;
+
+    const parent = this.findParent(node);
+
+    let succ = this.inOrderSucc(node);
+    console.log(succ);
+
+    // if successor has a right node
+    if (succ.right) {
+      // replace it with its own successor
+      this.replaceWithSucc(succ);
+    } else {
+      if (parent) parent.right = succ;
+              // TODO: make this work for left/right (only left so far)
+      else {
+        this.root.right = succ;
+      }
+    }
+  }
+
   // remove a node with given value
   remove(val) {
     if (!this.root) return null;
@@ -346,6 +369,7 @@ class BinarySearchTree {
     // case 1: node is a leaf
     if (node.isLeaf()) {
       // remove it
+                                // TODO: abstract this away 
       if (parent.left.val === node.val) {
         parent.left = null;
       } else {
@@ -355,7 +379,7 @@ class BinarySearchTree {
 
     // case 2: node has one child
     else if (!node.left || !node.right) {
-      // if it's a left child...
+      // if it's a left child
       if (node.left) {
         if (parent.left.val === node.val) {
           parent.left = node.left;
@@ -364,7 +388,7 @@ class BinarySearchTree {
         }
       }
 
-      // if it's a right child...
+      // if it's a right child
       else {
         if (parent.left.val === node.val) {
           parent.left = node.right;
@@ -372,6 +396,11 @@ class BinarySearchTree {
           parent.right = node.right;
         }
       }
+    }
+
+    // case 3: node has two children
+    else if (node.left && node.right) {
+      // replace with successor (under construction)
     }
 
     return node;
