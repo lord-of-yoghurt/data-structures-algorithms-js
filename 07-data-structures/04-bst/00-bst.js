@@ -331,6 +331,17 @@ class BinarySearchTree {
     }
   }
 
+  // helper function to replace a node
+  // with a substitute node
+  // using the node's parent
+  replaceChild(parent, node, sub) {
+    if (parent.left.val === node.val) {
+      parent.left = sub;
+    } else {
+      parent.right = sub;
+    }
+  }
+
   // replace a node for its inorder successor
   // (helper for the ultra-bloated remove method)
   replaceWithSucc(node) {
@@ -369,32 +380,19 @@ class BinarySearchTree {
     // case 1: node is a leaf
     if (node.isLeaf()) {
       // remove it
-                                // TODO: abstract this away 
-      if (parent.left.val === node.val) {
-        parent.left = null;
-      } else {
-        parent.right = null;
-      }
+      this.replaceChild(parent, node, null);
     }
 
     // case 2: node has one child
     else if (!node.left || !node.right) {
       // if it's a left child
       if (node.left) {
-        if (parent.left.val === node.val) {
-          parent.left = node.left;
-        } else {
-          parent.right = node.left;
-        }
+        this.replaceChild(parent, node, node.left);
       }
 
       // if it's a right child
       else {
-        if (parent.left.val === node.val) {
-          parent.left = node.right;
-        } else {
-          parent.right = node.right;
-        }
+        this.replaceChild(parent, node, node.right);
       }
     }
 
