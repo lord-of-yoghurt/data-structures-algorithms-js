@@ -237,6 +237,50 @@ describe('a BST', () => {
       testTree.replaceWithSucc(testTree.find(55));
 
       assert.equal(60, testTree.find(65).left.val);
+      assert.equal(61, testTree.find(60).right.val);
+    });
+
+    it('keeps the tree valid', () => {
+      assert.equal(true, testTree.isValid());
+    });
+  });
+
+  /*
+            50
+     25               75
+  10    40        65      85
+      35  45   60    70
+                 61
+                  62
+  */
+
+  describe('remove', () => {
+    it('removes a node with no children', () => {
+      testTree.remove(10);
+
+      assert.equal(null, testTree.find(25).left);
+    });
+
+    it('removes a node with one child', () => {
+      testTree.remove(25);
+
+      assert.equal(40, testTree.root.left.val);
+    });
+
+    it('keeps subtree intact upon single-child node removal', () => {
+      assert.equal(45, testTree.find(40).right.val);
+    });
+
+    it('removes a node with two children', () => {
+      testTree.remove(50);
+
+      assert.equal(60, testTree.root.val);
+    });
+
+    it('modifies the tree correctly if node has two children', () => {
+      assert.equal(61, testTree.find(65).left.val);
+      assert.equal(62, testTree.find(61).right.val);
+      assert.equal(true, testTree.find(62).isLeaf());
     });
 
     it('keeps the tree valid', () => {

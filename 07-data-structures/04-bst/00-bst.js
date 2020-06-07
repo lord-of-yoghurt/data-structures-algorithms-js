@@ -370,12 +370,12 @@ class BinarySearchTree {
 
   // remove a node with given value
   remove(val) {
-    if (!this.root) return null;
+    if (!this.root || typeof val !== 'number') return false;
 
     // find the node
     const node = this.find(val);
 
-    if (!node) return null;
+    if (!node) return false;
 
     // get its parent
     const parent = this.findParent(node);
@@ -401,10 +401,10 @@ class BinarySearchTree {
 
     // case 3: node has two children
     else if (node.left && node.right) {
-      // replace with successor
+      this.replaceWithSucc(node);
     }
 
-    return node;
+    return true;
   }
 }
 
