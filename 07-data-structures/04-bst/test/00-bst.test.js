@@ -207,10 +207,12 @@ describe('a BST', () => {
 
   /*
             50
-     25            75
-  10    40      65    85
-      35  45  55  70
-                60
+     25               75
+  10    40        65      85
+      35  45   55    70
+                 60
+                  61
+                   62
   */
 
   describe('inOrderSucc', () => {
@@ -229,34 +231,16 @@ describe('a BST', () => {
     });
   });
 
-  describe('remove', () => {
-    after(() => {
-      testTree.insert(65).insert(70);
-    });
-
-    it('deletes a leaf node', () => {
-      testTree.remove(70);
-
-      assert.equal(null, testTree.find(65).right);
-    });
-
-    it('deletes a node with one child', () => {
-      testTree.remove(65);
-
-      assert.equal(55, testTree.find(75).left.val);
-    });
-  });
-
   describe('replaceWithSucc', () => {
-    before(() => {
-      testTree.insert(60);
+    it('replaces a node with its inorder successor', () => {
+      testTree.insert(60).insert(61).insert(62);
+      testTree.replaceWithSucc(testTree.find(55));
+
+      assert.equal(60, testTree.find(65).left.val);
     });
 
-    it('replaces a node with its inorder successor', () => {
-      testTree.replaceWithSucc(testTree.root);
-
-      assert.equal(55, testTree.root.val);
-      assert.equal(60, testTree.find(65).right.val);
+    it('keeps the tree valid', () => {
+      assert.equal(true, testTree.isValid());
     });
   });
 });
