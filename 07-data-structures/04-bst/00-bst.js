@@ -180,21 +180,17 @@ class BinarySearchTree {
 
   // perform breadth-first traversal iteratively
   // (level by level)
-  bfsIter() {
-    // queue for nodes from the tree
-    const queue = [],
-          // arr for values of visited nodes
-          visited = [];
-
-    // first, push the root into the queue
-    queue.push(this.root);
+  bfsTrav(fn) {
+    // queue for nodes from the tree,
+    // prefilled with the root
+    const queue = [this.root];
 
     // while the queue isn't empty
     while (queue.length > 0) {
       // dequeue the first item of the queue
       const node = queue.shift();
-      // push its value into visited
-      visited.push(node.val);
+      // call the callback on it
+      fn(node);
 
       // if it has a left, queue it
       if (node.left) {
@@ -206,8 +202,6 @@ class BinarySearchTree {
         queue.push(node.right);
       }
     }
-
-    return visited;
   }
 
   // count nodes recursively
@@ -386,8 +380,8 @@ class BinarySearchTree {
     // find successor
     const succ = this.inOrderSucc(node);
 
-    // if there's no right, replace the current
-    // node's value with its successor's value
+    // replace the current node's value
+    // with its successor's value
     node.val = succ.val;
 
     // if the successor is a leaf, remove it

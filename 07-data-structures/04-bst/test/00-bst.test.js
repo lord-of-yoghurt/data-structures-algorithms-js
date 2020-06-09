@@ -106,7 +106,7 @@ describe('a BST', () => {
     10  40
   */
 
-  describe('preOrder traversal', () => {
+  describe('preOrder traversal with a callback', () => {
     it('iterates over a tree in preOrder fashion (node, L, R)', () => {
       // traverse the tree and put every value in an array
       const treeArr = [];
@@ -120,7 +120,7 @@ describe('a BST', () => {
     });
   });
 
-  describe('inOrder traversal', () => {
+  describe('inOrder traversal with a callback', () => {
     const treeArr = [];
 
     before((done) => {
@@ -141,9 +141,13 @@ describe('a BST', () => {
     });
   });
 
-  describe('level traversal (iterative)', () => {
+  describe('level traversal with a callback', () => {
     it('iterates over a tree in breadth-first fashion', () => {
-      const treeArr = testTree.bfsIter();
+      const treeArr = [];
+      
+      testTree.bfsTrav(node => {
+        treeArr.push(node.val);
+      });
 
       assert.deepStrictEqual(treeArr, [50, 25, 75, 10, 40]);
     });
