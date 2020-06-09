@@ -178,6 +178,38 @@ class BinarySearchTree {
     }
   }
 
+  // perform breadth-first traversal iteratively
+  // (level by level)
+  bfsIter() {
+    // queue for nodes from the tree
+    const queue = [],
+          // arr for values of visited nodes
+          visited = [];
+
+    // first, push the root into the queue
+    queue.push(this.root);
+
+    // while the queue isn't empty
+    while (queue.length > 0) {
+      // dequeue the first item of the queue
+      const node = queue.shift();
+      // push its value into visited
+      visited.push(node.val);
+
+      // if it has a left, queue it
+      if (node.left) {
+        queue.push(node.left);
+      }
+
+      // if it has a right, queue it
+      if (node.right) {
+        queue.push(node.right);
+      }
+    }
+
+    return visited;
+  }
+
   // count nodes recursively
   // this is done in postorder form: left child, right child, node
   countNodes(node = this.root) {
