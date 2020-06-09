@@ -178,6 +178,16 @@ class BinarySearchTree {
     }
   }
 
+  // perform postorder traversal recursively
+  // (first a node's left child, then right child, then node)
+  postOrder(fn, node = this.root) {
+    if (node) {
+      this.postOrder(fn, node.left);
+      this.postOrder(fn, node.right);
+      fn(node);
+    }
+  }
+
   // perform breadth-first traversal iteratively
   // (level by level)
   bfsTrav(fn) {

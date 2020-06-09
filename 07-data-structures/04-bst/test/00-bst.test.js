@@ -106,12 +106,12 @@ describe('a BST', () => {
     10  40
   */
 
-  describe('preOrder traversal with a callback', () => {
-    it('iterates over a tree in preOrder fashion (node, L, R)', () => {
+  describe('preorder traversal with a callback', () => {
+    it('iterates over a tree in preorder fashion (node, L, R)', () => {
       // traverse the tree and put every value in an array
       const treeArr = [];
 
-      testTree.preOrder((node) => {
+      testTree.preOrder(node => {
         treeArr.push(node.val);
       });
 
@@ -120,24 +120,36 @@ describe('a BST', () => {
     });
   });
 
-  describe('inOrder traversal with a callback', () => {
+  describe('inorder traversal with a callback', () => {
     const treeArr = [];
 
     before((done) => {
-      testTree.inOrder((node) => {
+      testTree.inOrder(node => {
         treeArr.push(node.val);
       });
 
       done();
     });
 
-    it('iterates over a tree in inOrder fashion (L, node, R)', () => {
+    it('iterates over a tree in inorder fashion (L, node, R)', () => {
       assert.equal(40, treeArr[2]);
       assert.equal(50, treeArr[3]);
     });
 
     it('sorts the values of all nodes if put in an array', () => {
       assert.deepStrictEqual(treeArr, [10, 25, 40, 50, 75]);
+    });
+  });
+
+  describe('postorder traversal with a callback', () => {
+    it('iterates over a tree in postorder fashion (L, R, node)', () => {
+      const treeArr = [];
+
+      testTree.postOrder(node => {
+        treeArr.push(node.val);
+      });
+
+      assert.deepStrictEqual(treeArr, [10, 40, 25, 75, 50]);
     });
   });
 
