@@ -442,6 +442,19 @@ class BinarySearchTree {
 
     return true;
   }
+
+  /**
+   * BST BALANCING
+   */
+
+  isBalanced(node = this.root) {
+    const lHeight = this.countHeight(node.left),
+          rHeight = this.countHeight(node.right);
+
+    if (Math.abs(lHeight - rHeight) > 1) return false;
+
+    return true;
+  }
 }
 
 class Node {

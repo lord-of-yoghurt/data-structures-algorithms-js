@@ -319,4 +319,22 @@ describe('a BST', () => {
                61    70
                  62
   */
+
+  describe('BST balancing', () => {
+    describe('isBalanced', () => {
+      after(() => {
+        testTree.insert(62);
+      });
+
+      it('returns false if the tree is not balanced', () => {
+        assert.equal(false, testTree.isBalanced());
+      });
+
+      it('returns true if the tree is balanced', () => {
+        testTree.remove(62);
+
+        assert.equal(true, testTree.isBalanced());
+      });
+    });
+  });
 });
