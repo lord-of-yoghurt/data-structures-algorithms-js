@@ -512,10 +512,13 @@ class BinarySearchTree {
   treeToVine() {
     // if the tree is already balanced or is empty,
     // don't do anything else
-    if (this.isBalanced() || !this.root) return false;
+    if (this.isBalanced() || !this.root) return 0;
 
     // start at the root
-    let current = this.root;
+    let current = this.root,
+        // keep track of the number of nodes to return
+        // (starting from 1 for current)
+        nodeCount = 1;
 
     // as long as there's a right child
     while (current.right) {
@@ -527,9 +530,11 @@ class BinarySearchTree {
 
       // move on to current's right child
       current = current.right;
+      // increment the count
+      nodeCount++;
     }
 
-    return true;
+    return nodeCount;
   }
 }
 

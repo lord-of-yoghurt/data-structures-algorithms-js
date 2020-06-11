@@ -364,10 +364,9 @@ describe('a BST', () => {
 
     describe('treeToVine', () => {
       it('turns a tree into a vine for DSW balancing', () => {
-        testTree.treeToVine();
-
         // the height and number of nodes should match
-        assert.equal(testTree.countNodes(), testTree.countHeight());
+        // (treeToVine returns the number of nodes)
+        assert.equal(testTree.treeToVine(), testTree.countHeight());
       });
     });
   });
