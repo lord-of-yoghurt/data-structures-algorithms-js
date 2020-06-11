@@ -351,5 +351,15 @@ describe('a BST', () => {
         assert.equal(10, rotateTree.root.left.val);
       });
     });
+
+    describe('rotateLeft', () => {
+      it('performs a left rotation on a node', () => {
+        rotateTree.rotateLeft();
+
+        assert.equal(50, rotateTree.root.val);
+        assert.equal(40, rotateTree.find(25).right.val);
+        assert.equal(75, rotateTree.root.right.val);
+      });
+    });
   });
 });

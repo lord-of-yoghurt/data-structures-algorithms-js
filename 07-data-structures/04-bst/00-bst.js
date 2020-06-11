@@ -469,12 +469,14 @@ class BinarySearchTree {
     return true;
   }
 
-  // perform a right rotate on a node
-  /*
-          50                 25
-      25      75   -->   10      50
-    10  40                     40  75
+  /*        rotations for DSW
+
+          50     right ->    25
+      25      75         10      50
+    10  40       <-- left      40  75
+
   */
+  // perform a right rotate on a node
   rotateRight(node = this.root) {
     // stash node's left child away
     const origLeft = node.left;
@@ -491,6 +493,19 @@ class BinarySearchTree {
     origLeft.right = node.right;
     // point node's right to OL
     node.right = origLeft;
+  }
+
+  // perform a left rotate on a node
+  // (the exact opposite of rotateRight)
+  rotateLeft(node = this.root) {
+    const origRight = node.right;
+
+    this.swapVal(node, node.right);
+
+    node.right = node.right.right;
+    origRight.right = origRight.left;
+    origRight.left = node.left;
+    node.left = origRight;
   }
 }
 
