@@ -1,9 +1,8 @@
 const assert = require('assert').strict;
 
-const { BinarySearchTree, Node } = require('../00-bst');
+const { Node } = require('../00-bst');
 
-const testTree = new BinarySearchTree(),
-      emptyTree = new BinarySearchTree();
+const { testTree, emptyTree, rotateTree } = require('./mocks');
 
 describe('a BST', () => {
   it('exists', () => {
@@ -334,6 +333,20 @@ describe('a BST', () => {
         testTree.remove(62);
 
         assert.equal(true, testTree.isBalanced());
+      });
+    });
+
+    /*
+            50
+        25      75
+      10  40
+    */
+
+    describe('rotateRight', () => {
+      it('performs a right rotation on a node', () => {
+        rotateTree.rotateRight();
+
+        assert.equal(25, rotateTree.root.val);
       });
     });
   });

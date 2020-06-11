@@ -383,6 +383,13 @@ class BinarySearchTree {
     }
   }
 
+  // swap values of two nodes
+  swapVal(node1, node2) {
+    const temp = node1.val;
+    node1.val = node2.val;
+    node2.val = temp;
+  }
+
   // replace a node with its inorder successor
   replaceWithSucc(node) {
     if (!node || !this.root) return undefined;
@@ -454,6 +461,16 @@ class BinarySearchTree {
     if (Math.abs(lHeight - rHeight) > 1) return false;
 
     return true;
+  }
+
+  // perform a right rotate on a node
+  /*
+          50                 25
+      25      75   -->   10      50
+    10  40                     40  75
+  */
+  rotateRight(node = this.root) {
+
   }
 }
 
