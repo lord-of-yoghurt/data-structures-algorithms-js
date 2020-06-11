@@ -507,6 +507,30 @@ class BinarySearchTree {
     origRight.left = node.left;
     node.left = origRight;
   }
+
+  // turn tree into a vine for DSW algorithm balancing
+  treeToVine() {
+    // if the tree is already balanced or is empty,
+    // don't do anything else
+    if (this.isBalanced() || !this.root) return false;
+
+    // start at the root
+    let current = this.root;
+
+    // as long as there's a right child
+    while (current.right) {
+      // as long as there's a left child
+      while (current.left) {
+        // perform rotates on the current
+        this.rotateRight(current);
+      }
+
+      // move on to current's right child
+      current = current.right;
+    }
+
+    return true;
+  }
 }
 
 class Node {
