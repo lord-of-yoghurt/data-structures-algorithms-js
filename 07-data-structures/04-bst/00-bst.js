@@ -385,6 +385,12 @@ class BinarySearchTree {
 
   // swap values of two nodes
   swapVal(node1, node2) {
+    if (
+      (!node1 || !node2) ||
+      !(node1 instanceof Node) ||
+      !(node2 instanceof Node)
+    ) throw new Error('Must provide existing node-type values to swap!');
+
     const temp = node1.val;
     node1.val = node2.val;
     node2.val = temp;
@@ -470,7 +476,21 @@ class BinarySearchTree {
     10  40                     40  75
   */
   rotateRight(node = this.root) {
+    // stash node's left child away
+    const origLeft = node.left;
 
+    // swap values of node and its left child
+    this.swapVal(node, node.left);
+
+    // point node's left to its left child's left
+    // (this disconnects node's left child)
+    node.left = node.left.left;
+    // point OL.left to OL.right
+    origLeft.left = origLeft.right;
+    // point OL right to node's right
+    origLeft.right = node.right;
+    // point node's right to OL
+    node.right = origLeft;
   }
 }
 

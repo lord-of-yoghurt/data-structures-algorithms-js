@@ -347,6 +347,8 @@ describe('a BST', () => {
         rotateTree.rotateRight();
 
         assert.equal(25, rotateTree.root.val);
+        assert.equal(40, rotateTree.find(50).left.val);
+        assert.equal(10, rotateTree.root.left.val);
       });
     });
   });
