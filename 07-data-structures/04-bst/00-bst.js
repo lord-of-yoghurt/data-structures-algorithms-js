@@ -510,9 +510,7 @@ class BinarySearchTree {
 
   // turn tree into a vine for DSW algorithm balancing
   treeToVine() {
-    // if the tree is already balanced or is empty,
-    // don't do anything else
-    if (this.isBalanced() || !this.root) return 0;
+    if (!this.root) return 0;
 
     // start at the root
     let current = this.root,
@@ -535,6 +533,44 @@ class BinarySearchTree {
     }
 
     return nodeCount;
+  }
+
+  // balance the tree using the DSW algorithm
+  dswBalance() {
+    if (this.isBalanced()) return false;
+
+    let numRotates = this.treeToVine();
+    // this is the number of nodes at the bottom
+    // of the BALANCED tree
+    const bottomNodes = Math.ceil(Math.log2(numRotates)) - 1;
+
+    let current = this.root;
+
+    // establish the bottom level using 
+    // left rotates on odd nodes
+    for (let i = 0; i < bottomNodes; i++) {
+      if (i === 0) {
+        this.rotateLeft(current); // always odd
+        current = this.root; // always even after rotate
+      } else {
+        this.rotateLeft(current.right); // always odd
+        current = current.right; // always even after rotate
+      }
+    }
+
+    // perform the remaining rotations
+    while (numRotates > 1) {
+      numRotates = Math.floor(numRotates / 2);
+
+      this.rotateLeft(this.root); // always odd
+      current = this.root; // always even
+
+      for (let i = 0; i < numRotates - 1; i++) {
+        console.log(current.right);
+        this.rotateLeft(current.right); // always odd
+        current = current.right; // always even
+      }
+    }
   }
 }
 
