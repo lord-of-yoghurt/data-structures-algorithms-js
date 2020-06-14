@@ -4,13 +4,15 @@ class MaxBinaryHeap {
   }
 
   swapVal(idx1, idx2) {
-    if (!this.values[idx1] || !this.values[idx2]) {
+    const VALS = this.values;
+
+    if (!VALS[idx1] || !VALS[idx2]) {
       throw new Error('Must provide indices for existing values!');
     }
 
-    const temp = this.values[idx1];
-    this.values[idx1] = this.values[idx2];
-    this.values[idx2] = temp;
+    const temp = VALS[idx1];
+    VALS[idx1] = VALS[idx2];
+    VALS[idx2] = temp;
   }
 
   insert(val) {
