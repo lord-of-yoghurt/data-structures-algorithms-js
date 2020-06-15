@@ -42,6 +42,41 @@ class MaxBinaryHeap {
 
     return this;
   }
+
+  extractMax() {
+    const VALS = this.values;
+
+    // swap the first and the last values
+    this.swapVal(0, VALS.length - 1);
+
+    const max = VALS.pop();
+
+    // index of the replacing value is now 0
+    let vIdx = 0,
+        // its left child's index
+        lIdx = 2 * vIdx + 1,
+        // its right child's index
+        rIdx = 2 * vIdx + 2;
+    
+    while (VALS[lIdx] > VALS[vIdx] || VALS[rIdx] > VALS[vIdx]) {
+      // if the left child is larger, swap with it
+      if (VALS[lIdx] > VALS[rIdx]) {
+        this.swapVal(vIdx, lIdx);
+        // reassign the value's index
+        vIdx = lIdx;
+      // otherwise, do the same with the right child
+      } else {
+        this.swapVal(vIdx, rIdx);
+        vIdx = rIdx;
+      }
+
+      // recalculate left and right child's indices
+      lIdx = 2 * vIdx + 1;
+      rIdx = 2 * vIdx + 2;
+    }
+
+    return max;
+  }
 }
 
 module.exports = MaxBinaryHeap;
