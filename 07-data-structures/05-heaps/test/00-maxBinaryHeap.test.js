@@ -39,7 +39,7 @@ describe('a max binary heap', () => {
   describe('extractMax', () => {
     it('removes the max value and replaces it correctly', () => {
       testHeap.extractMax();
-      console.log(testHeap.values);
+      
       assert.equal(40, testHeap.values[0]);
       assert.equal(20, testHeap.values[1]);
     });

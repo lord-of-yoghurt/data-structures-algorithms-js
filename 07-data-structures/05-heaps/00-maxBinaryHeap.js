@@ -46,17 +46,24 @@ class MaxBinaryHeap {
   extractMax() {
     const VALS = this.values;
 
+    // handle empty heap
+    if (VALS.length === 0) return undefined;
+
     // swap the first and the last values
     this.swapVal(0, VALS.length - 1);
 
     const max = VALS.pop();
 
+    // handle heap with just the root 
+    // (now empty after pop)
+    if (VALS.length === 0) return max;
+
     // index of the replacing value is now 0
     let vIdx = 0,
         // its left child's index
-        lIdx = 2 * vIdx + 1,
+        lIdx = 1,
         // its right child's index
-        rIdx = 2 * vIdx + 2;
+        rIdx = 2;
     
     while (VALS[lIdx] > VALS[vIdx] || VALS[rIdx] > VALS[vIdx]) {
       // if the left child is larger, swap with it
