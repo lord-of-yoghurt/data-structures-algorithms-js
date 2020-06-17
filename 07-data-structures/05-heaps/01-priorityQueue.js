@@ -6,10 +6,6 @@ class PriorityQueue {
   // swap two nodes in the values array
   // using provided indices
   swapNodes(idx1, idx2) {
-    // if (!idx1 || !idx2) {
-    //   throw new Error('Must provide valid indices!');
-    // }
-
     const VALS = this.values;
 
     const temp = VALS[idx1];
@@ -17,6 +13,8 @@ class PriorityQueue {
     VALS[idx2] = temp;
   }
 
+  // add an item to the queue
+  // and put it in the right place based on priority
   enqueue(val, priority) {
     if (!val || !priority || priority < 1) return false;
 
@@ -31,8 +29,9 @@ class PriorityQueue {
     let nIdx = VALS.length - 1,
         pIdx = Math.floor((nIdx - 1) / 2);
 
-    console.log(nIdx, pIdx);
-
+    // min heap - if node's priority number is smaller
+    // than its parent's (means priority is higher),
+    // swap them and recalculate indices
     while (VALS[nIdx].priority < VALS[pIdx].priority) {
       this.swapNodes(pIdx, nIdx);
       nIdx = pIdx;
