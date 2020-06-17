@@ -21,28 +21,29 @@ class PriorityQueue {
     const newNode = new Node(val, priority),
           VALS = this.values;
 
+    // new node gets inserted at the end of the queue
     VALS.push(newNode);
 
     // if there's only one item, nothing else needs to be done
     if (VALS.length === 1) return this;
 
-    let nIdx = VALS.length - 1,
-        pIdx = Math.floor((nIdx - 1) / 2);
+    // grab the index of the newly inserted node
+    let nIdx = VALS.length - 1;
 
-    // min heap - if node's priority number is smaller
-    // than its parent's (means priority is higher),
-    // swap them and recalculate indices
-    while (VALS[nIdx].priority < VALS[pIdx].priority) {
-      this.swapNodes(pIdx, nIdx);
-      nIdx = pIdx;
-      pIdx = Math.floor((nIdx - 1) / 2);
+    while (true) {
+      // calculate the new node's parent's index
+      let pIdx = Math.floor((nIdx - 1) / 2);
 
-      // get out of the loop if the parent index
-      // is out of bounds (means the node's index is 0)
-      if (pIdx < 0) break;
+      // as long as nIdx is greater than zero
+      // (to prevent out-of-bound indices)
+      // and the priority of the value at nIdx
+      // is higher (i.e. the number is smaller)
+      if (nIdx && VALS[nIdx].priority < VALS[pIdx].priority) {
+        // keep swapping and recalculating indices
+        this.swapNodes(pIdx, nIdx);
+        nIdx = pIdx;
+      } else return this;
     }
-
-    return this;
   }
 }
 
