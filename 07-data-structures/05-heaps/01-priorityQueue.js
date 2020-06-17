@@ -45,6 +45,50 @@ class PriorityQueue {
       } else return this;
     }
   }
+
+  dequeue() {
+    const VALS = this.values;
+
+    let len = this.values.length;
+
+    // will return undefined if queue is empty
+    if (len < 2) return VALS.pop();
+
+    // swap first and last nodes
+    this.swapNodes(0, len - 1);
+
+    // this is the node we're removing,
+    // it'll be returned
+    const removed = VALS.pop();
+
+    // the index of the replacement node
+    let nIdx = 0;
+
+    while (true) {
+      // get indices of the replacement node's L/R children
+      let lIdx = 2 * nIdx + 1,
+          rIdx = 2 * nIdx + 2,
+          // helper variables to shorten things
+          current = VALS[nIdx],
+          lChild = VALS[lIdx],
+          rChild = VALS[rIdx];
+      
+      // if the replacement node's priority is lower
+      // (i.e. priority number is greater) than its
+      // left or right child's
+      if (current.priority > lChild.priority ||
+          current.priority > rChild.priority) {
+        // if the left child's priority is higher
+        if (lChild.priority < rChild.priority) {
+          // swap replacement node with it
+          this.swapNodes(nIdx, lIdx);
+        } else {
+          // otherwise, swap with the right child
+          this.swapNodes(nIdx, rIdx);
+        }
+      } else return removed;
+    }
+  }
 }
 
 class Node {

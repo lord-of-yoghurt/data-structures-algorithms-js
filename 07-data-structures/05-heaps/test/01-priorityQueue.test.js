@@ -11,9 +11,21 @@ describe('a priority queue', () => {
         .enqueue('watch tv', 5)
         .enqueue('do work', 1)
         .enqueue('ride bike', 3)
-        .enqueue('cook dinner', 2);
+        .enqueue('cook dinner', 2)
+        .enqueue('hydrate', 1);
       
       assert.equal('do work', testQueue.values[0].val);
+    });
+  });
+
+  describe('dequeue', () => {
+    it('removes and replaces the node with the highest priority', () => {
+      const removed = testQueue.dequeue();
+
+      console.log(testQueue.values);
+
+      assert.equal('do work', removed.val);
+      assert.equal('hydrate', testQueue.values[0].val);
     });
   });
 });
