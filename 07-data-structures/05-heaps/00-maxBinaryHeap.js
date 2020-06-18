@@ -17,30 +17,24 @@ class MaxBinaryHeap {
 
   insert(val) {
     const VALS = this.values;
+    let len = this.values.length;
     // push the value to the end of the 
     // values array
     VALS.push(val);
 
+    if (len === 1) return this;
+
     // grab its index
-    let vIdx = VALS.length - 1;
+    let vIdx = len - 1;
 
-    // grab the index of its parent using formula
-    let pIdx = Math.floor((vIdx - 1) / 2);
+    while (true) {
+      let pIdx = Math.floor((vIdx - 1) / 2);
 
-    // assuming the newly added value is larger
-    // than its parent's value, bubble it up
-    while (VALS[vIdx] > VALS[pIdx]) {
-      // swap them
-      this.swapVal(vIdx, pIdx);
-
-      // new value's index is now the parent index
-      vIdx = pIdx;
-
-      // update the parent index
-      pIdx = Math.floor((vIdx - 1) / 2);
+      if (vIdx && VALS[vIdx] > VALS[pIdx]) {
+        this.swapVal(vIdx, pIdx);
+        vIdx = pIdx;
+      } else return this;
     }
-
-    return this;
   }
 
   extractMax() {
