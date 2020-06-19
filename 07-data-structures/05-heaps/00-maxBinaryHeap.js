@@ -18,6 +18,7 @@ class MaxBinaryHeap {
   insert(val) {
     const VALS = this.values;
     let len = this.values.length;
+
     // push the value to the end of the 
     // values array
     VALS.push(val);
@@ -28,10 +29,15 @@ class MaxBinaryHeap {
     let vIdx = len - 1;
 
     while (true) {
+      // calculate the parent value's index
       let pIdx = Math.floor((vIdx - 1) / 2);
 
+      // if the value's index is more than 0
+      // and the value is larger than its parent
       if (vIdx && VALS[vIdx] > VALS[pIdx]) {
+        // swap them
         this.swapVal(vIdx, pIdx);
+        // value's index becomes its parent's index
         vIdx = pIdx;
       } else return this;
     }
@@ -53,30 +59,30 @@ class MaxBinaryHeap {
     if (VALS.length === 0) return max;
 
     // index of the replacing value is now 0
-    let vIdx = 0,
-        // its left child's index
-        lIdx = 1,
-        // its right child's index
-        rIdx = 2;
-    
-    while (VALS[lIdx] > VALS[vIdx] || VALS[rIdx] > VALS[vIdx]) {
-      // if the left child is larger, swap with it
-      if (VALS[lIdx] > VALS[rIdx]) {
-        this.swapVal(vIdx, lIdx);
-        // reassign the value's index
-        vIdx = lIdx;
-      // otherwise, do the same with the right child
-      } else {
-        this.swapVal(vIdx, rIdx);
-        vIdx = rIdx;
-      }
+    let vIdx = 0;
 
-      // recalculate left and right child's indices
-      lIdx = 2 * vIdx + 1;
-      rIdx = 2 * vIdx + 2;
+    while (true) {
+      // calculate indices of the left and right children
+      // of replacement value
+      let lIdx = 2 * vIdx + 1,
+          rIdx = 2 * vIdx + 2,
+          // helper variables for readability
+          val = VALS[vIdx],
+          lChild = VALS[lIdx],
+          rChild = VALS[rIdx];
+      
+      // if the new value is less than either of its children
+      if (val < lChild || val < rChild) {
+        // replace with the largest of them and reassign indices
+        if (lChild > rChild) {
+          this.swapVal(vIdx, lIdx);
+          vIdx = lIdx;
+        } else {
+          this.swapVal(vIdx, rIdx);
+          vIdx = rIdx;
+        }
+      } else return max;
     }
-
-    return max;
   }
 }
 

@@ -22,8 +22,6 @@ describe('a priority queue', () => {
     it('removes and replaces the node with the highest priority', () => {
       const removed = testQueue.dequeue();
 
-      console.log(testQueue.values);
-
       assert.equal('do work', removed.val);
       assert.equal('hydrate', testQueue.values[0].val);
     });
