@@ -2,7 +2,9 @@ const assert = require('assert').strict;
 
 const HashTable = require('../hashTable');
 
-const testTable = new HashTable();
+const testTable = new HashTable(),
+      // smaller table to test for collisions
+      collTable = new HashTable(13);
 
 describe('a hash table', () => {
   it('has a keyMap array with default size of 53', () => {
@@ -19,11 +21,30 @@ describe('a hash table', () => {
     });
 
     it('handles a collision using separate chaining', () => {
-      testTable.set('royal blue', '4169E1');
+      // these two will create a collision
+      // (resulting index is the same)
+      collTable.set('pink', '#ffc0cb');
+      collTable.set('cyan', '#00ffff');
 
-      const pairs = testTable.keyMap.find(val => !!val);
+      const pairs = collTable.keyMap.find(val => !!val);
 
       assert.equal(2, pairs.length);
+    });
+  });
+
+  describe('get', () => {
+    it('fetches a key-value pair by key', () => {
+      testTable.set('lime green', '#32cd32');
+
+      const pair = testTable.get('lime green');
+
+      assert.equal('#32cd32', pair[1]);
+    });
+
+    it('handles k/v pair after collision', () => {
+      const pair = collTable.get('pink');
+
+      assert.equal('#ffc0cb', pair[1]);
     });
   });
 });

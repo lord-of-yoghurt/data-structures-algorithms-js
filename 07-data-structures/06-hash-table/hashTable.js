@@ -30,6 +30,25 @@ class HashTable {
 
     return [key, val];
   }
+
+  get(key) {
+    if (typeof key !== 'string') return undefined;
+
+    // hash the key and perform the look-up
+    const idx = hash(key, this.keyMap.length),
+          data = this.keyMap[idx];
+    
+    if (!data) return undefined;
+
+    // if there's more than one pair at this index,
+    // search for the pair using the key
+    if (data.length > 1) {
+      const kvPair = data.find(pair => pair[0] === key);
+      return kvPair;
+    }
+
+    return data[0];
+  }
 }
 
 module.exports = HashTable;
