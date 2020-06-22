@@ -13,11 +13,11 @@ describe('a hash table', () => {
 
   describe('set', () => {
     it('stores a value using a hashed key', () => {
-      testTable.set('royal blue', '#4169e1');
+      testTable.set('royal blue', '4169E1');
 
       const newPair = testTable.keyMap.find(val => !!val);
 
-      assert.equal('#4169e1', newPair[0][1]);
+      assert.equal('4169E1', newPair[0][1]);
     });
 
     it('handles a collision using separate chaining', () => {
@@ -29,6 +29,14 @@ describe('a hash table', () => {
       const pairs = collTable.keyMap.find(val => !!val);
 
       assert.equal(2, pairs.length);
+    });
+
+    it('updates value if a duplicate key is provided', () => {
+      testTable.set('royal blue', '#4169e1');
+
+      const pair = testTable.keyMap.find(val => !!val);
+
+      assert.equal('#4169e1', pair[0][1]);
     });
   });
 

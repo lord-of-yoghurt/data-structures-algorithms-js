@@ -15,17 +15,23 @@ class HashTable {
     // hash the key
     const idx = hash(key, this.keyMap.length);
 
+    // get a reference to the keymap for brevity
+    const map = this.keyMap;
+
     // use separate chaining to store the value.
     // if there's nothing at this index,
-    if (!this.keyMap[idx]) {
+    if (!map[idx]) {
       // create an array and store the k-v pair there
       // in their own sub-array
-      this.keyMap[idx] = [[key, val]];
+      map[idx] = [[key, val]];
     } else {
       // otherwise, if there's already an array at that index,
-      // we have a collision. push the new pair into the 
-      // existing array
-      this.keyMap[idx].push([key, val]);
+      // we have a collision. 
+      // if the k/v pair already exists, update the value
+      if (map[idx][0][0] === key) map[idx][0][1] = val;
+
+      // otherwise, push the new pair into the existing array
+      else map[idx].push([key, val]);
     }
 
     return [key, val];
