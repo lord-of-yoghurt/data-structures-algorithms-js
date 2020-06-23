@@ -59,4 +59,20 @@ describe('a hash table', () => {
       assert.equal(undefined, testTable.get('pink silver'));
     });
   });
+
+  describe('keys', () => {
+    it('returns an array of all hash table keys', () => {
+      const keys = testTable.keys();
+
+      assert.equal(2, keys.length);
+      assert.equal(true, keys.includes('lime green'));
+    });
+
+    it('handles a hash table with collisions', () => {
+      const keys = collTable.keys();
+
+      assert.equal(2, keys.length);
+      assert.equal(true, keys.includes('cyan'));
+    });
+  });
 });

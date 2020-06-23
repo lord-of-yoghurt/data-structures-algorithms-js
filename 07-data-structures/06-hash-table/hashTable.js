@@ -54,6 +54,33 @@ class HashTable {
 
     return data[0];
   }
+
+  keys() {
+    const keys = [],
+          map = this.keyMap,
+          len = this.keyMap.length;
+
+    // loop over the keymap
+    for (let i = 0; i < len; i++) {
+      // if the item we're on is truthy and
+      // there's more than one subitem (after collision),
+      // such as [ ['a', 'b' ], ['c', 'd'] ]
+      if (map[i] && map[i].length > 1) {
+        // loop over all subitems
+        for (let j = 0; j < map[i].length; j++) {
+          // each key is two arrays deep, in the first place
+          keys.push(map[i][j][0]);
+        }
+      // otherwise, and only if it's a truthy value,
+      } else if (map[i]) {
+        // the key is in the only sub-array, in the first place
+        keys.push(map[i][0][0]);
+      }
+    }
+
+    // will be empty if there's no data in keyMap
+    return keys;
+  }
 }
 
 module.exports = HashTable;
