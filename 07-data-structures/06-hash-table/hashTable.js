@@ -13,7 +13,7 @@ class HashTable {
     }
 
     // hash the key
-    const idx = hash(key, this.keyMap.length);
+    const idx = Math.abs(hash(key, this.keyMap.length));
 
     // get a reference to the keymap for brevity
     const map = this.keyMap;
@@ -41,7 +41,7 @@ class HashTable {
     if (typeof key !== 'string') return undefined;
 
     // hash the key and perform the look-up
-    const idx = hash(key, this.keyMap.length),
+    const idx = Math.abs(hash(key, this.keyMap.length)),
           data = this.keyMap[idx];
     
     if (!data) return undefined;
