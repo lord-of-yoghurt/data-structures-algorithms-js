@@ -54,5 +54,9 @@ describe('a hash table', () => {
 
       assert.equal('#ffc0cb', pair[1]);
     });
+
+    it('returns undefined if key is not present', () => {
+      assert.equal(undefined, testTable.get('pink silver'));
+    });
   });
 });
