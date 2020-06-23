@@ -7,6 +7,7 @@ class HashTable {
     this.keyMap = new Array(size);
   }
 
+  // add or update a key-value pair
   set(key, val) {
     if (typeof key !== 'string' || typeof val !== 'string') {
       return undefined;
@@ -37,6 +38,7 @@ class HashTable {
     return [key, val];
   }
 
+  // find a key-value pair using a key
   get(key) {
     if (typeof key !== 'string') return undefined;
 
@@ -55,6 +57,7 @@ class HashTable {
     return data[0];
   }
 
+  // get all keys of the hash table
   keys() {
     const keys = [],
           map = this.keyMap,
@@ -80,6 +83,34 @@ class HashTable {
 
     // will be empty if there's no data in keyMap
     return keys;
+  }
+
+  // get all values of the hash table
+  values() {
+    const values = [],
+      map = this.keyMap,
+      len = this.keyMap.length;
+
+    // loop over the keymap
+    for (let i = 0; i < len; i++) {
+      // if the item we're on is truthy and
+      // there's more than one subitem (after collision),
+      // such as [ ['a', 'b' ], ['c', 'd'] ]
+      if (map[i] && map[i].length > 1) {
+        // loop over all subitems
+        for (let j = 0; j < map[i].length; j++) {
+          // each key is two arrays deep, in the second place
+          values.push(map[i][j][1]);
+        }
+        // otherwise, and only if it's a truthy value,
+      } else if (map[i]) {
+        // the key is in the only sub-array, in the second place
+        values.push(map[i][0][1]);
+      }
+    }
+
+    // will be empty if there's no data in keyMap
+    return values;
   }
 }
 

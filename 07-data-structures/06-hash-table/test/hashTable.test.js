@@ -75,4 +75,20 @@ describe('a hash table', () => {
       assert.equal(true, keys.includes('cyan'));
     });
   });
+
+  describe('values', () => {
+    it('returns an array of all hash table values', () => {
+      const values = testTable.values();
+
+      assert.equal(2, values.length);
+      assert.equal(true, values.includes('#32cd32'));
+    });
+
+    it('handles a hash table with collisions', () => {
+      const values = collTable.values();
+
+      assert.equal(2, values.length);
+      assert.equal(true, values.includes('#00ffff'));
+    });
+  });
 });
