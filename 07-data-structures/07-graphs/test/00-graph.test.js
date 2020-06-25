@@ -8,4 +8,18 @@ describe('a graph', () => {
   it('uses an adjacency list via JS object', () => {
     assert.equal('object', typeof testGraph.adjList);
   });
+
+  describe('addVertex', () => {
+    it('creates a new vertex entry in the adjacency list', () => {
+      testGraph.addVertex('New York');
+
+      assert.equal(
+        true, Object.keys(testGraph.adjList).includes('New York')
+      );
+    });
+
+    it('creates an array for each entry to store edges', () => {
+      assert.equal(0, testGraph.adjList['New York'].length);
+    });
+  });
 });
