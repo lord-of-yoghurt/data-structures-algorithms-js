@@ -4,7 +4,9 @@ class Graph {
   }
 
   addVertex(data) {
-    this.adjList[data] = [];
+    const list = this.adjList;
+    
+    if (!list[data]) list[data] = [];
 
     return this;
   }
@@ -16,6 +18,15 @@ class Graph {
 
     list[vtx1].push(vtx2);
     list[vtx2].push(vtx1);
+
+    return this;
+  }
+
+  removeEdge(vtx1, vtx2) {
+    const list = this.adjList;
+
+    list[vtx1] = list[vtx1].filter(v => v !== vtx2);
+    list[vtx2] = list[vtx2].filter(v => v !== vtx1);
 
     return this;
   }
