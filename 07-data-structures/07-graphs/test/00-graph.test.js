@@ -12,6 +12,7 @@ describe('a graph', () => {
   describe('addVertex', () => {
     it('creates a new vertex entry in the adjacency list', () => {
       testGraph.addVertex('New York');
+      testGraph.addVertex('Paris');
 
       assert.equal(
         true, Object.keys(testGraph.adjList).includes('New York')
@@ -20,6 +21,14 @@ describe('a graph', () => {
 
     it('creates an array for each entry to store edges', () => {
       assert.equal(0, testGraph.adjList['New York'].length);
+    });
+  });
+
+  describe('addEdge', () => {
+    it('adds a connection between two vertices', () => {
+      testGraph.addEdge('New York', 'Paris');
+
+      assert.equal('Paris', testGraph.adjList['New York'][0]);
     });
   });
 });
