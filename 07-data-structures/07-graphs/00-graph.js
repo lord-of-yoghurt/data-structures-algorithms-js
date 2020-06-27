@@ -30,6 +30,24 @@ class Graph {
 
     return this;
   }
+
+  // to remove a vertex, we have to remove all of its
+  // edges as well
+  removeVertex(vtx) {
+    if (!this.adjList[vtx]) return false;
+
+    // go over every edge of the vertex we're removing
+    for (let item of this.adjList[vtx]) {
+      // call removeEdge on the vertex itself and every edge
+      this.removeEdge(vtx, item);
+    }
+
+    // delete the corresponding property from the
+    // adjList object entirely
+    delete this.adjList[vtx];
+
+    return this;
+  }
 }
 
 module.exports = Graph;

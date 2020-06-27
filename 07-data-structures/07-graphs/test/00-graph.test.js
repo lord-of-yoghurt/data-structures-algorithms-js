@@ -44,4 +44,13 @@ describe('a graph', () => {
       assert.equal(-1, testGraph.adjList['Paris'].indexOf('New York'));
     });
   });
+
+  describe('removeVertex', () => {
+    it('removes a vertex from the graph', () => {
+      testGraph.removeVertex('New York');
+
+      assert.equal(undefined, testGraph.adjList['New York']);
+      assert.equal(-1, testGraph.adjList['Paris'].indexOf('New York'));
+    });
+  });
 });
