@@ -48,6 +48,34 @@ class Graph {
 
     return this;
   }
+
+  // recursive depth-first traversal of a graph
+  // (takes in the vertex to start with,
+  // an object for visited nodes, and a callback)
+  dfRec(vtx, visited = {}, fn) {
+    // get a reference to the adjacency list
+    const list = this.adjList;
+
+    // base case: if the vertex doesn't exist, return
+    if (!list[vtx]) return;
+
+    // add the node to the visited object
+    visited[vtx] = true;
+
+    // call the callback on it
+    fn(vtx);
+
+    // for each one of its neighbours,
+    for (let nVtx of list[vtx]) {
+      // if it hasn't been visited,
+      if (!visited[nVtx]) {
+        // make a recursive call on the neighbour
+        // using the visited object in its current form
+        // and the originally provided callback
+        this.dfRec(nVtx, visited, fn);
+      }
+    }
+  }
 }
 
 module.exports = Graph;
