@@ -112,6 +112,42 @@ class Graph {
       }
     }
   }
+
+  // breadth-first traversal with a callback.
+  // similar to iterative DF traversal, 
+  // except we're using a queue instead of a stack,
+  // therefore visiting all neighbour vertices
+  // at current depth (meaning visiting all immediate
+  // neighbours of a vertex before moving on to
+  // those vertices' neighbours)
+  bfTrav(startVtx, fn) {
+    const list = this.adjList;
+
+    if (!list[startVtx]) return false;
+
+    // create the queue array
+    const q = [],
+          // and the object for visited vertices
+          visited = {};
+    
+    q.push(startVtx);
+
+    while (q.length > 0) {
+      // since it's a queue, we remove the first
+      // element added
+      const vtx = q.shift();
+
+      if (!visited[vtx]) {
+        fn(vtx);
+
+        visited[vtx] = true;
+
+        for (let nVtx of list[vtx]) {
+          q.push(nVtx);
+        }
+      }
+    }
+  }
 }
 
 module.exports = Graph;
