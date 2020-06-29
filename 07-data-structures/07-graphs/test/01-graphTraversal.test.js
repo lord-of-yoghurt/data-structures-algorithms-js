@@ -25,23 +25,43 @@ describe('graph traversals', () => {
       .addEdge("E", "F");
   });
 
-  describe('depth-first recursive', () => {
+  describe('depth-first traversal (recursive)', () => {
     it('visits every node in DF fashion, recursively', () => {
       const graphArr = [];
 
       testGraph.dfRec("A", {}, vtx => graphArr.push(vtx));
 
-      assert.equal(6, graphArr.length);
+      assert.deepStrictEqual(
+        ["A", "B", "D", "E", "C", "F"],
+        graphArr
+      );
     });
   });
 
-  describe('depth-first iterative', () => {
+  // this will be different because of the helper stack
+  describe('depth-first traversal (iterative)', () => {
     it('visits every node in DF fashion, iteratively', () => {
       const graphArr = [];
 
       testGraph.dfIter("A", vtx => graphArr.push(vtx));
 
-      assert.equal(6, graphArr.length);
+      assert.deepStrictEqual(
+        ["A", "C", "E", "F", "D", "B"],
+        graphArr
+      );
+    });
+  });
+
+  describe('breadth-first traversal', () => {
+    it('visits every node in BF fashion', () => {
+      const graphArr = [];
+
+      testGraph.bfTrav("A", vtx => graphArr.push(vtx));
+
+      assert.deepStrictEqual(
+        ["A", "B", "C", "D", "E", "F"],
+        graphArr
+      );
     });
   });
 });
