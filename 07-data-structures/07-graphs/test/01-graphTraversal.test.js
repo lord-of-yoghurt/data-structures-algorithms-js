@@ -24,6 +24,16 @@ describe('graph traversals', () => {
       .addEdge("D", "F")
       .addEdge("E", "F");
   });
+  
+  /* 
+        A
+      /   \
+     B     C
+     |     |
+     D --- E
+      \   /
+        F
+  */
 
   describe('depth-first traversal (recursive)', () => {
     it('visits every node in DF fashion, recursively', () => {
