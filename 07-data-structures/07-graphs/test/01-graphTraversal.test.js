@@ -26,10 +26,20 @@ describe('graph traversals', () => {
   });
 
   describe('depth-first recursive', () => {
-    it('visits every node in the graph in DF fashion', () => {
+    it('visits every node in DF fashion, recursively', () => {
       const graphArr = [];
 
       testGraph.dfRec("A", {}, vtx => graphArr.push(vtx));
+
+      assert.equal(6, graphArr.length);
+    });
+  });
+
+  describe('depth-first iterative', () => {
+    it('visits every node in DF fashion, iteratively', () => {
+      const graphArr = [];
+
+      testGraph.dfIter("A", vtx => graphArr.push(vtx));
 
       assert.equal(6, graphArr.length);
     });
