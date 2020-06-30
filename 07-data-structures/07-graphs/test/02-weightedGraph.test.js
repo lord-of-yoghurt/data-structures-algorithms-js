@@ -1,0 +1,32 @@
+const assert = require('assert').strict;
+
+const WeightedGraph = require('../01-weightedGraph');
+
+const testGraph = new WeightedGraph;
+
+describe('a weighted graph', () => {
+  before(() => {
+    testGraph
+      .addVertex('A')
+      .addVertex('B')
+      .addVertex('C')
+      .addVertex('D')
+      .addVertex('E')
+      .addVertex('F')
+      .addVertex('G')
+      .addVertex('H');
+
+    testGraph
+      .addEdge('A', 'B', 6)
+      .addEdge('A', 'C', 10)
+      .addEdge('B', 'C', 7)
+      .addEdge('B', 'D', 8)
+      .addEdge('C', 'D', 4)
+      .addEdge('C', 'E', 3)
+      .addEdge('C', 'F', 7)
+      .addEdge('C', 'G', 22)
+      .addEdge('D', 'E', 6)
+      .addEdge('E', 'F', 5)
+      .addEdge('F', 'G', 4);
+  });
+});
