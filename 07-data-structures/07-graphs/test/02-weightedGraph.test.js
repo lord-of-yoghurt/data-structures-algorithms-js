@@ -29,4 +29,11 @@ describe('a weighted graph', () => {
       .addEdge('E', 'F', 5)
       .addEdge('F', 'G', 4);
   });
+
+  it('stores a weight for each edge', () => {
+    assert.equal(
+      10,
+      testGraph.adjList['C'][0]['weight']
+    );
+  });
 });
