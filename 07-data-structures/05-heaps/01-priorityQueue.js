@@ -3,6 +3,10 @@ class PriorityQueue {
     this.values = [];
   }
 
+  isEmpty() {
+    return !!this.values.length;
+  }
+
   // swap two nodes in the values array
   // using provided indices
   swapNodes(idx1, idx2) {
