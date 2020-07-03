@@ -56,14 +56,14 @@ class WeightedGraph {
 
   // find the shortest path between two vertices
   // using Dijkstra's algorithm
-  findShortestPath(vtx1, vtx2) {
+  findShortestPath(fromVtx, toVtx) {
     const list = this.adjList;
 
     if (
-      !vtx1 ||
-      !vtx2 ||
-      !list[vtx1] ||
-      !list[vtx2]
+      !fromVtx ||
+      !toVtx ||
+      !list[fromVtx] ||
+      !list[toVtx]
     ) return null;
 
     const distances = {},
@@ -72,11 +72,11 @@ class WeightedGraph {
 
     const result = {
       'distance': null,
-      'path': [vtx2]
+      'path': [toVtx]
     };
 
-    for (let v of Object.keys(list)) {
-      if (v === vtx1) {
+    for (let v in list) {
+      if (v === fromVtx) {
         distances[v] = 0;
         vtxQueue.enqueue(v, 0);
       } else {
@@ -88,7 +88,9 @@ class WeightedGraph {
     }
 
     while (!vtxQueue.isEmpty()) {
-      const current = vtxQueue.dequeue().val;
+      const current = vtxQueue.dequeue().val; 
+
+      if (current === toVtx) break;
       
       for (let item of list[current]) {
         let distance = item['weight'] + distances[current];
@@ -101,9 +103,9 @@ class WeightedGraph {
       }
     }
 
-    result['distance'] = distances[vtx2];
-    
-    let prev = prevRecord[vtx2];
+    result['distance'] = distances[toVtx];
+
+    let prev = prevRecord[toVtx];
 
     while (prev) {
       result['path'].unshift(prev);
