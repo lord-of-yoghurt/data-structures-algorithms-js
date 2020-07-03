@@ -53,17 +53,29 @@ class PriorityQueue {
   dequeue() {
     const VALS = this.values;
 
-    let len = this.values.length;
-
-    // will return undefined if queue is empty
-    if (len < 2) return VALS.pop();
+    // if there's 1 or 2 values, 
+    // take out and return the first.
+    // if 0, undefined will be returned
+    if (VALS.length <= 2) return VALS.shift();
 
     // swap first and last nodes
-    this.swapNodes(0, len - 1);
+    this.swapNodes(0, VALS.length - 1);
 
     // this is the node we're removing,
     // it'll be returned
     const removed = VALS.pop();
+
+    // edge case that will produce an out-of-bound index later:
+    // if, after the pop, there's two values left,
+    if (VALS.length === 2) {
+      // if the first one's priority is higher, swap them
+      if (VALS[0].priority > VALS[1].priority) {
+        this.swapNodes(0, 1);
+      }
+      
+      // return the one already popped
+      return removed;
+    }
 
     // the index of the replacement node
     let nIdx = 0;

@@ -25,5 +25,18 @@ describe('a priority queue', () => {
       assert.equal('do work', removed.val);
       assert.equal('hydrate', testQueue.values[0].val);
     });
+
+    it('handles a queue with 3 elements', () => {
+      testQueue.dequeue();
+      const removed = testQueue.dequeue();
+
+      assert.equal('cook dinner', removed.val);
+    });
+
+    it('handles a queue with 2 elements', () => {
+      const removed = testQueue.dequeue();
+
+      assert.equal('ride bike', removed.val);
+    });
   });
 });
