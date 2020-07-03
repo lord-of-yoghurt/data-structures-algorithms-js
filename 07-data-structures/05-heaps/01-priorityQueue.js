@@ -20,7 +20,7 @@ class PriorityQueue {
   // add an item to the queue
   // and put it in the right place based on priority
   enqueue(val, priority) {
-    if (!val || !priority || priority < 1) return false;
+    if (!val || priority < 0) return false;
 
     const newNode = new Node(val, priority),
           VALS = this.values;
