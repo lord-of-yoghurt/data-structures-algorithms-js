@@ -4,7 +4,7 @@ class PriorityQueue {
   }
 
   isEmpty() {
-    return !!this.values.length;
+    return this.values.length === 0;
   }
 
   // swap two nodes in the values array
