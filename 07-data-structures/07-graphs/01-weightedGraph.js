@@ -1,29 +1,4 @@
-// const { PriorityQueue } = require('../05-heaps/01-priorityQueue');
-
-class PriorityQueue {
-  constructor() {
-    this.values = [];
-  }
-
-  isEmpty() {
-    return this.values.length === 0;
-  }
-
-  enqueue(val, priority) {
-    this.values.push({val, priority});
-    this.sort();
-  }
-
-  dequeue() {
-    return this.values.shift();
-  }
-
-  sort() {
-    this.values.sort((a, b) => {
-      a.priority - b.priority;
-    });
-  }
-}
+const { PriorityQueue } = require('../05-heaps/01-priorityQueue');
 
 class WeightedGraph {
   constructor() {
