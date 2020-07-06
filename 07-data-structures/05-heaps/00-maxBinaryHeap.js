@@ -17,16 +17,15 @@ class MaxBinaryHeap {
 
   insert(val) {
     const VALS = this.values;
-    let len = this.values.length;
 
     // push the value to the end of the 
     // values array
     VALS.push(val);
 
-    if (len === 1) return this;
+    if (VALS.length === 1) return this;
 
     // grab its index
-    let vIdx = len - 1;
+    let vIdx = VALS.length - 1;
 
     while (true) {
       // calculate the parent value's index
@@ -49,14 +48,20 @@ class MaxBinaryHeap {
     // handle empty heap
     if (VALS.length === 0) return undefined;
 
+    if (VALS.length === 1 || VALS.length === 2) {
+      return VALS.shift();
+    }
+
     // swap the first and the last values
     this.swapVal(0, VALS.length - 1);
 
     const max = VALS.pop();
 
-    // handle heap with just the root 
-    // (now empty after pop)
-    if (VALS.length === 0) return max;
+    // handle heap with only two values left after pop
+    if (VALS.length === 2) {
+      if (VALS[0] < VALS[1]) this.swapVal(0, 1);
+      return max;
+    }
 
     // index of the replacing value is now 0
     let vIdx = 0;

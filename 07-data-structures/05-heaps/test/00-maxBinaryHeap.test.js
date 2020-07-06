@@ -43,5 +43,13 @@ describe('a max binary heap', () => {
       assert.equal(40, testHeap.values[0]);
       assert.equal(20, testHeap.values[1]);
     });
+
+    it('handles a heap with 3 elements', () => {
+      for (let i = testHeap.values.length; i > 3; i--) {
+        testHeap.extractMax();
+      }
+
+      assert.equal(20, testHeap.extractMax());
+    });
   });
 });
