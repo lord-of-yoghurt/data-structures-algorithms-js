@@ -12,4 +12,11 @@ const fibIter = n => {
   return fibArr[n];
 }
 
-module.exports = { fibIter };
+// recursive fibonacci
+const fibRec = n => {
+  if (n < 2) return n;
+
+  return fibRec(n - 1) + fibRec(n - 2);
+}
+
+module.exports = { fibIter, fibRec };
