@@ -9,7 +9,7 @@ describe('iterative fibonacci', () => {
 });
 
 describe('recursive fibonacci', () => {
-  it('returns the n-th member of fib sequence in O(crap)', () => {
+  it('returns the n-th member of fib sequence in O(2 ^ n)', () => {
     assert.equal(34, fibRec(9));
   });
 });
