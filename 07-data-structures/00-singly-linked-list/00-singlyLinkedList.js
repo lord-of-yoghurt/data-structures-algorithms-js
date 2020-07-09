@@ -225,6 +225,27 @@ class SinglyLinkedList {
     // return thyself
     return this;
   }
+
+  // rotate a list clockwise n times
+  // for n == 2
+  // before: A -> B -> C -> D -> E
+  // after: C -> D -> E -> A -> B
+  rotate(n) {
+    for (let i = 0; i < n; i++) {
+      // temp <- head's next
+      const temp = this.head.next;
+      // tail's next <- head
+      this.tail.next = this.head;
+      // tail <- head
+      this.tail = this.head;
+      // tail's next <- null
+      this.tail.next = null;
+      // head <- temp
+      this.head = temp;
+    }
+
+    return this;
+  }
 }
 
 module.exports = { Node, SinglyLinkedList };

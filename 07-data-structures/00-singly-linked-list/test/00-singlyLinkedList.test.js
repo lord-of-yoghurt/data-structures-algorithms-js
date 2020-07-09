@@ -166,4 +166,18 @@ describe('a linked list', () => {
       assert.equal('oranges', testList.tail.data);
     });
   });
+
+  describe('rotate', () => {
+    it('rotates the list clockwise a given number of times', () => {
+      testList
+        .push('grapes')
+        .push('mangoes')
+        .push('kiwis')
+
+      testList.rotate(2);
+
+      assert.equal('grapes', testList.head.data);
+      assert.equal('oranges', testList.tail.data);
+    });
+  });
 });
