@@ -19,15 +19,19 @@ const fibRec = n => {
   return fibRec(n - 1) + fibRec(n - 2);
 };
 
-// finish this up
-const memoize = fn => {
-  const memo = {};
+// recursive fibonacci with basic memoization
+const memoFibRec = (n, cashe = []) {
+  // if we have a cached result, return it
+  if (cache[n]) return cache[n];
+  // base case
+  if (n < 2) return n;
 
-  return () => {
+  // perform the calculation
+  const res = memoFibRec(n - 1, cache) + memoFibRec(n - 2, cache);
+  // save it
+  cache[n] = res;
 
-  };
-};
-
-const memoFibRec = memoize(fibRec);
+  return res;
+}
 
 module.exports = { fibIter, fibRec };
