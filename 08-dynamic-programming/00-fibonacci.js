@@ -20,7 +20,7 @@ const fibRec = n => {
 };
 
 // recursive fibonacci with basic memoization
-const memoFibRec = (n, cashe = []) {
+const memoFibRec = (n, cache = []) => {
   // if we have a cached result, return it
   if (cache[n]) return cache[n];
   // base case
